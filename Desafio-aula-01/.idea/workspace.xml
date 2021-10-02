@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0f54d605-9fca-445f-b015-5c81fab3b811" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/Registradora.java" beforeDir="false" afterPath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/Registradora.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/out/production/registradora-cheia-de-bugs/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/out/production/registradora-cheia-de-bugs/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/out/production/registradora-cheia-de-bugs/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/out/production/registradora-cheia-de-bugs/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/out/production/registradora-cheia-de-bugs/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/out/production/registradora-cheia-de-bugs/registradora-cheia-de-bugs.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/registradora-cheia-de-bugs.iml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1yy2s17G9oHlP18Wypxc1VpaPbS" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0f54d605-9fca-445f-b015-5c81fab3b811" name="Changes" comment="" />
+      <created>1633209710030</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1633209710030</updated>
+    </task>
+    <servers />
+  </component>
+</project>
