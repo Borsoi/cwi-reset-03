@@ -2,17 +2,17 @@
 public class Registradora {
 
     public static void main(String[] args) {
-//        primeiroBug();
+        primeiroBug();
 
         segundoBug();
 
-//        terceiroBug();
-//
-//        quartoBug();
-//
-//        quintoBug();
-//
-//        sextoBug();
+        terceiroBug();
+
+        quartoBug();
+
+        quintoBug();
+
+        sextoBug();
     }
 
     private static double registrarItem(String item, int quantidade) {
@@ -22,6 +22,11 @@ public class Registradora {
             if ("pao".equals(item) || "sanduiche".equals(item) || "torta".equals(item)) {
                 if (!DataProjeto.cozinhaEmFuncionamento()) {
                     System.out.println("Cozinha fechada!");
+
+                    System.out.println ("A reposição do item não está disponível");
+                    System.out.println ("Quantidade restante em estoque de ");
+
+                    //Adicionar o aviso de reposição indisponível + quantidade de estoque restante
                 }
                 ReposicaoCozinha.reporItem(item);
             }

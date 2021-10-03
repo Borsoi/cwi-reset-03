@@ -2,19 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0f54d605-9fca-445f-b015-5c81fab3b811" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/.idea/runConfigurations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/QuantidadeMinimaItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/QuantidadeMinimaItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/Registradora.java" beforeDir="false" afterPath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/Registradora.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/out/production/registradora-cheia-de-bugs/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/out/production/registradora-cheia-de-bugs/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/out/production/registradora-cheia-de-bugs/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/out/production/registradora-cheia-de-bugs/.idea/runConfigurations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/out/production/registradora-cheia-de-bugs/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/out/production/registradora-cheia-de-bugs/registradora-cheia-de-bugs.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/registradora-cheia-de-bugs.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/RelacaoPesoPreco.java" beforeDir="false" afterPath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/RelacaoPesoPreco.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/ReposicaoCozinha.java" beforeDir="false" afterPath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/ReposicaoCozinha.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +27,20 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
+  <component name="RunManager">
+    <configuration name="Registradora" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Registradora" />
+      <module name="Desafio-aula-01" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Registradora" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -45,5 +51,19 @@
       <updated>1633209710030</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/registradora-cheia-de-bugs/src/Registradora.java</url>
+          <line>17</line>
+          <properties class="Registradora" method="registrarItem">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

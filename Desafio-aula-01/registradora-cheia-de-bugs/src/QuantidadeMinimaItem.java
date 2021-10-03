@@ -1,15 +1,16 @@
 public class QuantidadeMinimaItem {
 
     public static boolean precisaReposicao(String item) {
-        if ("paes".equals(item)) {
+        if ("pao".equals(item)) {
+            //Pão estava nomeado como pães, realizei essa troca
             return ItensPorQuantidade.pao < 600;
         }
 
         if ("torta".equals(item)) {
             return ItensPorQuantidade.torta < 10;
         }
-
-        if ("sanduba".equals(item)) {
+        // String sanduiche estava escrito como "sanduba", alterei para sanduiche
+        if ("sanduiche".equals(item)) {
             return ItensPorQuantidade.sanduiche == 1;
         }
 
