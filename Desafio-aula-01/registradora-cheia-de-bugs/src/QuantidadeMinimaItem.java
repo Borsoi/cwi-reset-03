@@ -7,7 +7,9 @@ public class QuantidadeMinimaItem {
         }
 
         if ("torta".equals(item)) {
-            return ItensPorQuantidade.torta < 10;
+            return ItensPorQuantidade.torta * 16 < 10;
+
+            // 1 torta equivale a 16 fatias
         }
         // String sanduiche estava escrito como "sanduba", alterei para sanduiche
         if ("sanduiche".equals(item)) {

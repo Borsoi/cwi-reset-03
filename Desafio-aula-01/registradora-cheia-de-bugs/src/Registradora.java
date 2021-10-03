@@ -23,11 +23,24 @@ public class Registradora {
                 if (!DataProjeto.cozinhaEmFuncionamento()) {
                     System.out.println("Cozinha fechada!");
 
-                    System.out.println ("A reposição do item não está disponível");
-                    System.out.println ("Quantidade restante em estoque de ");
+                    System.out.println ("A reposição do item " + item + " não está disponível");
+                    System.out.print("Quantidade restante em estoque: ");
+
+                    switch (item) {
+                        case "pao":
+                            System.out.println(ItensPorQuantidade.pao);
+                            break;
+                        case "sanduiche":
+                            System.out.println(ItensPorQuantidade.sanduiche);
+                            break;
+                        case "torta":
+                            System.out.println(ItensPorQuantidade.torta);
+                            break;
+                    }
 
                     //Adicionar o aviso de reposição indisponível + quantidade de estoque restante
                 }
+                else
                 ReposicaoCozinha.reporItem(item);
             }
 

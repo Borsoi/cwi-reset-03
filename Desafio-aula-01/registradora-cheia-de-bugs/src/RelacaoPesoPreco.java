@@ -8,7 +8,8 @@ public class RelacaoPesoPreco {
         }
 
         if ("torta".equals(item)) {
-            precoTotal = 96.00 * (quantidade / 16);
+            precoTotal = 96.00 * (quantidade / 16.0);
+            // 16 estava como inteiro, devolvendo valor inteiro de 0
         }
 
         if ("leite".equals(item)) {
