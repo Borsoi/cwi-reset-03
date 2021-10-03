@@ -4,12 +4,21 @@
     <list default="true" id="0f54d605-9fca-445f-b015-5c81fab3b811" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/QuantidadeMinimaItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/QuantidadeMinimaItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/Registradora.java" beforeDir="false" afterPath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/Registradora.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/RelacaoPesoPreco.java" beforeDir="false" afterPath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/RelacaoPesoPreco.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/ReposicaoFornecedor.java" beforeDir="false" afterPath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/ReposicaoFornecedor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -51,14 +60,10 @@
     <servers />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/registradora-cheia-de-bugs/src/Registradora.java</url>
-          <line>8</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="ItensPorQuantidade.sanduiche" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

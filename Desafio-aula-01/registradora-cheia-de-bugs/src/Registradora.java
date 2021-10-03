@@ -16,7 +16,42 @@ public class Registradora {
     }
 
     private static double registrarItem(String item, int quantidade) {
-        double precoItem = RelacaoPesoPreco.retornaPrecoProduto(item, quantidade);
+        double precoItem = 0;
+        if (!QuantidadeMinimaItem.verificaEstoque(item, quantidade)) {
+            if ("pao".equals(item) || "sanduiche".equals(item) || "torta".equals(item)) {
+                if (DataProjeto.cozinhaEmFuncionamento()) {
+                    ReposicaoCozinha.reporItem(item);
+                }
+            }
+            if ("leite".equals(item) || "cafe".equals(item)) {
+                ReposicaoFornecedor.reporItem(item);
+            }
+        }
+        if (QuantidadeMinimaItem.verificaEstoque(item, quantidade)) {
+            precoItem = RelacaoPesoPreco.retornaPrecoProduto(item, quantidade);
+            RetiradaEstoque.retirarEstoque(item, quantidade);
+        }
+        else {
+            System.out.println ("Quantidade insuficiente em estoque de " + item);
+            System.out.print("Quantidade solicitado " + quantidade + ", quantidade restante em estoque: ");
+
+            switch (item) {
+                case "pao":
+                    System.out.println(ItensPorQuantidade.pao);
+                    break;
+                case "sanduiche":
+                    System.out.println(ItensPorQuantidade.sanduiche);
+                    break;
+                case "torta":
+                    System.out.println(ItensPorQuantidade.torta);
+                    break;
+                case "cafe":
+                    System.out.println(ItensPorQuantidade.cafe);
+                    break;
+                case "leite":
+                    System.out.println(ItensPorQuantidade.leite);
+            }
+        }
 
         if (QuantidadeMinimaItem.precisaReposicao(item)) {
             if ("pao".equals(item) || "sanduiche".equals(item) || "torta".equals(item)) {
@@ -41,7 +76,7 @@ public class Registradora {
                     //Adicionar o aviso de reposição indisponível + quantidade de estoque restante
                 }
                 else
-                ReposicaoCozinha.reporItem(item);
+                    ReposicaoCozinha.reporItem(item);
             }
 
             if ("leite".equals(item) || "cafe".equals(item)) {

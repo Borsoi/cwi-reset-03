@@ -4,7 +4,7 @@ public class RelacaoPesoPreco {
         double precoTotal = 0;
 
         if ("pao".equals(item)) {
-            precoTotal = 12.75 * (quantidade * 60 / 1000);
+            precoTotal = 12.75 * (quantidade * 60.0) / 1000.0;
         }
 
         if ("torta".equals(item)) {
@@ -20,9 +20,10 @@ public class RelacaoPesoPreco {
             precoTotal = 9.56 * quantidade;
             // Café estava com acento
         }
-        // String sanduiche estava escrito como "sanduba", alterei para sanduiche
+
         if ("sanduiche".equals(item)) {
             precoTotal = 4.5 * quantidade;
+            // String sanduiche estava escrito como "sanduba", alterei para sanduiche
         }
 
         return precoTotal;
