@@ -16,8 +16,9 @@ public class RelacaoPesoPreco {
             precoTotal = 4.48 * quantidade;
         }
 
-        if ("café".equals(item)) {
+        if ("cafe".equals(item)) {
             precoTotal = 9.56 * quantidade;
+            // Café estava com acento
         }
         // String sanduiche estava escrito como "sanduba", alterei para sanduiche
         if ("sanduiche".equals(item)) {

@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0f54d605-9fca-445f-b015-5c81fab3b811" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/ItensPorQuantidade.java" beforeDir="false" afterPath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/ItensPorQuantidade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/QuantidadeMinimaItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/QuantidadeMinimaItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/Registradora.java" beforeDir="false" afterPath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/Registradora.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/RelacaoPesoPreco.java" beforeDir="false" afterPath="$PROJECT_DIR$/registradora-cheia-de-bugs/src/RelacaoPesoPreco.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,9 +54,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/registradora-cheia-de-bugs/src/RelacaoPesoPreco.java</url>
-          <line>10</line>
-          <option name="timeStamp" value="10" />
+          <url>file://$PROJECT_DIR$/registradora-cheia-de-bugs/src/Registradora.java</url>
+          <line>8</line>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

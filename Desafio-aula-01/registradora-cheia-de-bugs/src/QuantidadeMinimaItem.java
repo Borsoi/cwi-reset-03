@@ -17,11 +17,11 @@ public class QuantidadeMinimaItem {
         }
 
         if ("cafe".equals(item)) {
-            return ItensPorQuantidade.leite < 12;
+            return ItensPorQuantidade.cafe < 12;
         }
 
         if ("leite".equals(item)) {
-            return ItensPorQuantidade.cafe < 12;
+            return ItensPorQuantidade.leite < 12;
         }
 
         return false;
