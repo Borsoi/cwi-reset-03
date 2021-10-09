@@ -31,8 +31,8 @@ public class Filme {
     public void reproduzir () {
         System.out.println("Nome do filme: " + this.nome);
         System.out.println ("Descrição: " + this.descricao);
-        System.out.println (this.duracao + " minutos de duração");
-        System.out.println("Com a direção de " + this.diretor.getNome());
+        System.out.println ("Duração: " + this.duracao + " minutos");
+        System.out.println("Com a direção de: " + this.diretor.getNome());
         System.out.println ("");
     }
 
