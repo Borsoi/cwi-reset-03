@@ -19,12 +19,12 @@ public class Filme {
         return diretor;
     }
 
-    public Filme(String nome, String descricao, double duracao, String anoLancamento, double avaliacao, Diretor diretor) {
+    public Filme(String nome, String descricao, double duracao, String anoLancamento, double avaliacao, Diretor diretor) throws AvaliacaoForaDoPadraoException {
         this.nome = nome;
         this.descricao = descricao;
         this.duracao = duracao;
         this.anoLancamento = anoLancamento;
-        this.avaliacao = avaliacao;
+        validarAvaliacao(avaliacao);
         this.diretor = diretor;
     }
 
@@ -36,4 +36,14 @@ public class Filme {
         System.out.println ("");
     }
 
+    public void validarAvaliacao (double avaliacao) throws AvaliacaoForaDoPadraoException {
+        if (this.avaliacao >=1 && this.avaliacao <=5) {
+        this.avaliacao = avaliacao;
+        }
+        else {
+            throw new AvaliacaoForaDoPadraoException("Erro, a avaliação deve estar entre 1 e 5");
+        }
+
+
+    }
 }
