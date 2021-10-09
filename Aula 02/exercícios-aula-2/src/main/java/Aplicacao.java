@@ -2,7 +2,8 @@ public class Aplicacao {
 
     public static void main(String[] args) {
 
-        Diretor diretor01 = new Diretor("Guilherme", 24, 2);
+        Diretor diretor01 = new Diretor("Guilherme", 24, 2, Genero.MASCULINO);
+        Ator ator01 = new Ator("Claudiscleide", 35, 0, Genero.FEMININO);
 
         Filme filme01 = new Filme("Buggando a Mente", "A história conta como um aluno do RESET enloqueceu durante os exercícios",
                 160, "2021", 0, diretor01);
@@ -12,5 +13,8 @@ public class Aplicacao {
 
         filme01.reproduzir();
         filme02.reproduzir();
+
+        diretor01.dadosPessoais();
+        ator01.dadosPessoais();
     }
 }

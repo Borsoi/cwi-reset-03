@@ -1,18 +1,14 @@
-public class Diretor {
+public class Ator {
 
     private String nome;
     private Integer idade;
-    private Integer quantFilmesDirigidos;
+    private Integer numeroOscar;
     private Genero genero;
 
-    public String getNome() {
-        return nome;
-    }
-
-    public Diretor(String nome, Integer idade, Integer quantFilmesDirigidos, Genero genero) {
+    public Ator(String nome, Integer idade, Integer numeroOscar, Genero genero) {
         this.nome = nome;
         this.idade = idade;
-        this.quantFilmesDirigidos = quantFilmesDirigidos;
+        this.numeroOscar = numeroOscar;
         this.genero = genero;
     }
 
@@ -22,4 +18,5 @@ public class Diretor {
         System.out.println ("Gênero: " + genero.getDescricao());
         System.out.println ("");
     }
+
 }
