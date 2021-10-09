@@ -10,7 +10,7 @@ public class Aplicacao {
         Filme filme02 = new Filme("O Jovem Sobrevivente", "A história conta a sequência de buggando a mente, mostrando como o jovem sobrevivou ao curso do RESET",
                 190, "2022", 0, diretor01);
 
-        filme01.reproduzirFilme();
-        filme02.reproduzirFilme();
+        filme01.reproduzir();
+        filme02.reproduzir();
     }
 }

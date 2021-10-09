@@ -7,7 +7,6 @@ public class Filme {
     private double avaliacao;
     private Diretor diretor;
 
-
     public String getDescricao() {
         return descricao;
     }
@@ -29,7 +28,7 @@ public class Filme {
         this.diretor = diretor;
     }
 
-    public void reproduzirFilme () {
+    public void reproduzir () {
        System.out.println (this.descricao);
        System.out.println (this.duracao + " minutos de duração");
        System.out.println("Com a direção de " + this.diretor.getNome());
