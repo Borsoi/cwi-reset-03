@@ -2,10 +2,14 @@ package br.com.cwi.reset.guilhermeborsoi.services;
 
 import br.com.cwi.reset.guilhermeborsoi.FakeDatabase;
 import br.com.cwi.reset.guilhermeborsoi.domain.Ator;
+import br.com.cwi.reset.guilhermeborsoi.domain.StatusAtividade;
+import br.com.cwi.reset.guilhermeborsoi.domain.StatusCarreira;
 import br.com.cwi.reset.guilhermeborsoi.exceptions.CampoNaoInformado;
 import br.com.cwi.reset.guilhermeborsoi.requests.AtorRequest;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AtorService {
 
@@ -46,8 +50,54 @@ public class AtorService {
                 throw new CampoNaoInformado(e);
             } else
                 fakeDatabase.persisteAtor(ator);
+    }
+
+    public List listarAtoresEmAtividade (String filtroNome) throws CampoNaoInformado {
+        if (fakeDatabase.recuperaAtores().isEmpty()) {
+            String e = "Nenhum ator cadastrado, favor cadastrar atores";
+            throw new CampoNaoInformado(e);
+        }
+        List<Ator> atoresEmAtividade = new ArrayList<>();
+
+        for (Ator ator : fakeDatabase.recuperaAtores()) {
+            if (ator.getStatusCarreira().equals(StatusCarreira.EM_ATIVIDADE)) {
+                if (filtroNome == null || filtroNome.equals("")) {
+                   atoresEmAtividade.add(ator);
+                } else {
+                    if (ator.getNome().indexOf(filtroNome) != -1) {
+                        atoresEmAtividade.add(ator);
+                    }
+                }
+            }
+        }
+        if (atoresEmAtividade.isEmpty()) {
+            String e = "Ator não encontrato com o filtro {filtro}, favor informar outro filtro";
+            throw new CampoNaoInformado(e);
+        }
+        return atoresEmAtividade;
+    }
+
+    public Ator consultarAtor (Integer id) throws CampoNaoInformado {
+        if (id == null) {
+            String e = ("Campo obrigatório não informado. Favor informar o campo ID" );
+            throw new CampoNaoInformado(e);
+        }
+        for (Ator ator : fakeDatabase.recuperaAtores()) {
+            if (ator.getId() == id) {
+                return ator;
+            }
+        }
+        String e = ("Nenhum ator encontrado com o parâmetro " + id + ", favor verifique os parâmetros informados");
+        throw new CampoNaoInformado(e);
+    }
 
 
+    public List consultarAtores () throws CampoNaoInformado {
+        if (fakeDatabase.recuperaAtores().isEmpty()) {
+            String e = "Nenhum ator cadastrado, favor cadastar atores";
+            throw new CampoNaoInformado(e);
+        } else
+        return fakeDatabase.recuperaAtores();
     }
 
 }
