@@ -1,4 +1,4 @@
-package br.com.cwi.reset.guilhermeborsoi;
+package br.com.cwi.reset.guilhermeborsoi.domain;
 
 import java.time.LocalDate;
 
