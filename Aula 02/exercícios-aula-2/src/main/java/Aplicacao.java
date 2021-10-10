@@ -14,7 +14,7 @@ public class Aplicacao {
 
         try {
             Filme filme01 = new Filme("Buggando a Mente", "A história conta como um aluno do RESET enloqueceu durante os exercícios",
-                    160, "2021", 0, diretor01);
+                    160, "2021", 4.0, diretor01);
 
             listaDeFilme.add(filme01);
 
@@ -52,8 +52,8 @@ public class Aplicacao {
             System.out.println(e.getMessage());
         }
 
-        for (int i = 0; i < listaDeFilme.size(); i++) {
-            listaDeFilme.get(i).reproduzir();
+        for (Filme f : listaDeFilme) {
+            f.reproduzir();
         }
 
         diretor01.dadosPessoais();
