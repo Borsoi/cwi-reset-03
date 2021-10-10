@@ -7,6 +7,9 @@ public class Filme {
     private double avaliacao;
     private Diretor diretor;
 
+    public String getNome() {
+        return nome;
+    }
     public String getDescricao() {
         return descricao;
     }
@@ -37,13 +40,11 @@ public class Filme {
     }
 
     public void validarAvaliacao (double avaliacao) throws AvaliacaoForaDoPadraoException {
-        if (this.avaliacao >=1 && this.avaliacao <=5) {
-        this.avaliacao = avaliacao;
+        if (avaliacao >= 1 && avaliacao <= 5) {
+            this.avaliacao = avaliacao;
         }
         else {
-            throw new AvaliacaoForaDoPadraoException("Erro, a avaliação deve estar entre 1 e 5");
+            throw new AvaliacaoForaDoPadraoException();
         }
-
-
     }
 }

@@ -1,9 +1,6 @@
-public class AvaliacaoForaDoPadraoException extends Exception{
+public class AvaliacaoForaDoPadraoException extends RuntimeException{
 
-    public AvaliacaoForaDoPadraoException(String message) {
-        super(message);
+    public AvaliacaoForaDoPadraoException() {
+        super("Erro, a avaliação deve estar entre 1 e 5");
     }
-
-
-
 }
