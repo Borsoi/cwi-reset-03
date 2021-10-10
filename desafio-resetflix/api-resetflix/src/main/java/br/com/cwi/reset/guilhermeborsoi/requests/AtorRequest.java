@@ -1,27 +1,21 @@
-package br.com.cwi.reset.guilhermeborsoi.domain;
+package br.com.cwi.reset.guilhermeborsoi.requests;
+
+import br.com.cwi.reset.guilhermeborsoi.domain.StatusCarreira;
 
 import java.time.LocalDate;
 
-public class Ator {
+public class AtorRequest {
 
-    private Integer id;
     private String nome;
     private LocalDate dataNascimento;
     private StatusCarreira statusCarreira;
     private Integer anoInicioAtividade;
 
-    public Ator(Integer id, String nome, LocalDate dataNascimento,
-                StatusCarreira statusCarreira, Integer anoInicioAtividade) {
-        this.id = id;
+    public AtorRequest(String nome, LocalDate dataNascimento, StatusCarreira statusCarreira, Integer anoInicioAtividade) {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.statusCarreira = statusCarreira;
         this.anoInicioAtividade = anoInicioAtividade;
-    }
-
-    //Getters
-    public Integer getId() {
-        return id;
     }
 
     public String getNome() {

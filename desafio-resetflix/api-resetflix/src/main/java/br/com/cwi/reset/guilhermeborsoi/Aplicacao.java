@@ -1,8 +1,10 @@
 package br.com.cwi.reset.guilhermeborsoi;
 
+import br.com.cwi.reset.guilhermeborsoi.exceptions.CampoNaoInformado;
+import br.com.cwi.reset.guilhermeborsoi.requests.AtorRequest;
 import br.com.cwi.reset.guilhermeborsoi.domain.StatusCarreira;
 import br.com.cwi.reset.guilhermeborsoi.domain.Ator;
-import br.com.cwi.reset.guilhermeborsoi.domain.AtorService;
+import br.com.cwi.reset.guilhermeborsoi.services.AtorService;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -10,7 +12,7 @@ import java.util.List;
 
 public class Aplicacao {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CampoNaoInformado {
         FakeDatabase fakeDatabase = new FakeDatabase();
 
         AtorService atorService = new AtorService(fakeDatabase);
@@ -28,5 +30,7 @@ public class Aplicacao {
         System.out.println("Deve conter 1 ator, quantidade encontrada: " + atores.size());
         System.out.println("Primeiro ator deve ser 'Will Smith', valor encontrado: " + atores.get(0).getNome());
     }
+
+
 }
-}
+
