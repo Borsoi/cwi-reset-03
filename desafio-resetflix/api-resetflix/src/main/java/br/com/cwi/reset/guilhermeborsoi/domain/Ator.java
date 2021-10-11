@@ -40,12 +40,5 @@ public class Ator {
         return anoInicioAtividade;
     }
 
-    public void dadosPessoais () {
-        System.out.println("ID: " + getId());
-        System.out.println("Nome: " + getNome());
-        System.out.println("Data de Nascimento: " + getDataNascimento());
-        System.out.println("Status de Carreira: " + getStatusCarreira());
-        System.out.println("Ano do Inicio da Atividade: " + getAnoInicioAtividade());
-    }
 
 }
