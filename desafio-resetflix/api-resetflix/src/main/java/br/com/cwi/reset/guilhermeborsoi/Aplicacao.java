@@ -1,6 +1,6 @@
 package br.com.cwi.reset.guilhermeborsoi;
 
-import br.com.cwi.reset.guilhermeborsoi.exceptions.CampoNaoInformado;
+import br.com.cwi.reset.guilhermeborsoi.exceptions.MensagemDeErro;
 import br.com.cwi.reset.guilhermeborsoi.requests.AtorRequest;
 import br.com.cwi.reset.guilhermeborsoi.domain.StatusCarreira;
 import br.com.cwi.reset.guilhermeborsoi.domain.Ator;
@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Aplicacao {
 
-    public static void main(String[] args) throws CampoNaoInformado {
+    public static void main(String[] args) throws MensagemDeErro {
         FakeDatabase fakeDatabase = new FakeDatabase();
 
         AtorService atorService = new AtorService(fakeDatabase);
