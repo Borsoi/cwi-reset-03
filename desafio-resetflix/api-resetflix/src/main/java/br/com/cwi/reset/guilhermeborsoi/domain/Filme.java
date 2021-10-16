@@ -2,6 +2,7 @@ package br.com.cwi.reset.guilhermeborsoi.domain;
 
 import javax.swing.*;
 import java.time.LocalDate;
+import java.util.List;
 
 public class Filme {
 
@@ -11,7 +12,8 @@ public class Filme {
     private ImageIcon capaFilme;
     private Genero genero;
     private Diretor diretor;
-    private PersonagemAtor personagens;
+    private Estudio estudio;
+    private List<PersonagemAtor> personagens;
     private String resumo;
 
 }
