@@ -1,7 +1,10 @@
 package br.com.cwi.reset.primeiroprojetospring.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.regex.Pattern;
 
 import static java.time.LocalDate.now;
 
@@ -20,8 +23,8 @@ public abstract class Pessoa {
         return dataDeNascimento;
     }
 
-    public Genero getGenero() {
-        return genero;
+    public String getGenero() {
+        return genero.getDescricao();
     }
 
     public Pessoa(String nome, LocalDate dataDeNascimento, Genero genero) {

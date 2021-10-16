@@ -26,6 +26,10 @@ public class Filme {
         return anoLancamento;
     }
 
+    public double getAvaliacao() {
+        return avaliacao;
+    }
+
     public Diretor getDiretor() {
         return diretor;
     }

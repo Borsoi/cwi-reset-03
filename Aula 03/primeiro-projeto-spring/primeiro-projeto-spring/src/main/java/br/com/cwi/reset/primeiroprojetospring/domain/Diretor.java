@@ -14,5 +14,4 @@ import java.time.LocalDate;
             super(nome, dataDeNascimento, genero);
             this.quantFilmesDirigidos = quantFilmesDirigidos;
         }
-
     }
