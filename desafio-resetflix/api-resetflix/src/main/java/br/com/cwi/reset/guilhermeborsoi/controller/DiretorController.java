@@ -4,7 +4,6 @@ import br.com.cwi.reset.guilhermeborsoi.FakeDatabase;
 import br.com.cwi.reset.guilhermeborsoi.domain.Diretor;
 import br.com.cwi.reset.guilhermeborsoi.exceptions.MensagemDeErro;
 import br.com.cwi.reset.guilhermeborsoi.requests.DiretorRequest;
-import br.com.cwi.reset.guilhermeborsoi.services.AtorService;
 import br.com.cwi.reset.guilhermeborsoi.services.DiretorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
