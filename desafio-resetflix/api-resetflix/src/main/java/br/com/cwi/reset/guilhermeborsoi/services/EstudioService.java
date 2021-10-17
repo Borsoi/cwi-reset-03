@@ -71,9 +71,4 @@ public class EstudioService {
             String e = "Nenhum estúdio encontrado com o parâmetro ID " + id + ", favor verifique os parâmetros informados";
             throw new MensagemDeErro(e);
     }
-
-
-
 }
-
-

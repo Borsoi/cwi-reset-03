@@ -10,4 +10,8 @@ public enum Atuacao {
     Atuacao(String descricao) {
         this.descricao = descricao;
     }
+
+    public String getDescricao() {
+        return descricao;
+    }
 }

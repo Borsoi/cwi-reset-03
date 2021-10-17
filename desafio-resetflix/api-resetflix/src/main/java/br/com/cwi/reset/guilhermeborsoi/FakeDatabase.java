@@ -20,7 +20,7 @@ public class FakeDatabase {
     private List<Diretor> diretores = new ArrayList<>();
     private List<Estudio> estudios = new ArrayList<>();
     private List<Filme> filmes = new ArrayList<>();
-    private List<PersonagemAtor> personagens = new ArrayList<>();
+    private List<Personagem> personagens = new ArrayList<>();
 
     public void persisteAtor(Ator ator) {
         atores.add(ator);
@@ -54,11 +54,11 @@ public class FakeDatabase {
         return filmes;
     }
 
-    public void persistePersonagem(PersonagemAtor personagemAtor) {
-        personagens.add(personagemAtor);
+    public void persistePersonagem(Personagem personagem) {
+        personagens.add(personagem);
     }
 
-    public List<PersonagemAtor> recuperaPersonagens() {
+    public List<Personagem> recuperaPersonagens() {
         return personagens;
     }
 }
