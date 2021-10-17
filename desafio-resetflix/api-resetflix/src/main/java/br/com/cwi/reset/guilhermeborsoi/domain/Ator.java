@@ -32,13 +32,12 @@ public class Ator {
         return dataNascimento;
     }
 
-    public StatusCarreira getStatusCarreira() {
-        return statusCarreira;
+    public String getStatusCarreira() {
+        return statusCarreira.getDescricao();
     }
 
     public Integer getAnoInicioAtividade() {
         return anoInicioAtividade;
     }
-
 
 }

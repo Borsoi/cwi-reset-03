@@ -64,7 +64,7 @@ public class AtorService {
         List<Ator> atoresEmAtividade = new ArrayList<>();
 
         for (Ator ator : fakeDatabase.recuperaAtores()) {
-            if (ator.getStatusCarreira().equals(StatusCarreira.EM_ATIVIDADE)) {
+            if (ator.getStatusCarreira().equals(StatusCarreira.EM_ATIVIDADE.getDescricao())) {
                 if (filtroNome == null || filtroNome.equals("")) {
                    atoresEmAtividade.add(ator);
                 } else {
@@ -75,7 +75,7 @@ public class AtorService {
             }
         }
         if (atoresEmAtividade.isEmpty()) {
-            String e = "Ator não encontrato com o filtro {filtro}, favor informar outro filtro";
+            String e = "Ator não encontrato com o filtro " + filtroNome + ", favor informar outro filtro";
             throw new MensagemDeErro(e);
         }
         return atoresEmAtividade;
