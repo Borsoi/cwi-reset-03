@@ -88,6 +88,5 @@ public class DiretorService {
         throw new MensagemDeErro(e);
     }
 
-
-    }
+}
 
