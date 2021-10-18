@@ -9,14 +9,14 @@ public class Filme {
     private Integer id;
     private String nome;
     private Integer anoLancamento;
-    private ImageIcon capaFilme;
+    private String capaFilme;
     private List<Genero> genero;
     private Diretor diretor;
     private Estudio estudio;
     private List<Personagem> personagens;
     private String resumo;
 
-    public Filme(Integer id, String nome, Integer anoLancamento, ImageIcon capaFilme, List<Genero> genero,
+    public Filme(Integer id, String nome, Integer anoLancamento, String capaFilme, List<Genero> genero,
                  Diretor diretor, Estudio estudio, List<Personagem> personagens, String resumo) {
         this.id = id;
         this.nome = nome;
@@ -41,7 +41,7 @@ public class Filme {
         return anoLancamento;
     }
 
-    public ImageIcon getCapaFilme() {
+    public String getCapaFilme() {
         return capaFilme;
     }
 

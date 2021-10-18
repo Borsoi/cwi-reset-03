@@ -11,14 +11,14 @@ public class FilmeRequest {
 
     String nome;
     Integer anoLancamento;
-    ImageIcon capaFilme;
+    String capaFilme;
     List <Genero> genero;
     Integer diretorID;
     Integer estudioID;
     String resumo;
     List <PersonagemRequest> personagem;
 
-    public FilmeRequest(String nome, Integer anoLancamento, ImageIcon capaFilme, List<Genero> genero, Integer diretorID,
+    public FilmeRequest(String nome, Integer anoLancamento, String capaFilme, List<Genero> genero, Integer diretorID,
                         Integer estudioID, String resumo, List<PersonagemRequest> personagem) {
         this.nome = nome;
         this.anoLancamento = anoLancamento;
@@ -38,7 +38,7 @@ public class FilmeRequest {
         return anoLancamento;
     }
 
-    public ImageIcon getCapaFilme() {
+    public String getCapaFilme() {
         return capaFilme;
     }
 
