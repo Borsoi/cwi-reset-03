@@ -30,10 +30,11 @@ public class PersonagemService {
                 }
                 atorPeloID = ator;
             }
-            else {
-                String e = "Nenhum ator encontrado com o parâmetro ID " + personagemRequest.getAtorID() + ", favor verifique os parâmetros informados";
-                throw new MensagemDeErro(e);
-            }
+
+        }
+         if (atorPeloID == null) {
+            String e = "Nenhum ator encontrado com o parâmetro ID " + personagemRequest.getAtorID() + ", favor verifique os parâmetros informados";
+            throw new MensagemDeErro(e);
         }
 
         Personagem personagem = new Personagem(fakeDatabase.recuperaPersonagens().size(),atorPeloID,personagemRequest.getNomePersonagem(),

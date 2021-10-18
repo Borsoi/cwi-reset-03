@@ -55,20 +55,22 @@ public class FilmeService {
         for (Diretor diretor : fakeDatabase.recuperaDiretores()) {
             if (filmeRequest.getDiretorID() == diretor.getId()) {
                 diretorPeloID = diretor;
-            } else {
-                String e = "Nenhum diretor encontrado com o parâmetro ID " + filmeRequest.getDiretorID() + ", favor verifique os parâmetros informados";
-                throw new MensagemDeErro(e);
             }
+        }
+        if (diretorPeloID == null) {
+            String e = "Nenhum diretor encontrado com o parâmetro ID " + filmeRequest.getDiretorID() + ", favor verifique os parâmetros informados";
+            throw new MensagemDeErro(e);
         }
 
         Estudio estudioPeloID = null;
         for (Estudio estudio : fakeDatabase.recuperaEstudios()) {
             if (filmeRequest.getEstudioID() == estudio.getId()) {
                 estudioPeloID = estudio;
-            } else {
-                String e = "Nenhum estudio encontrado com o parâmetro ID " + filmeRequest.getEstudioID() + ", favor verifique os parâmetros informados";
-                throw new MensagemDeErro(e);
             }
+        }
+        if (estudioPeloID == null) {
+            String e = "Nenhum estudio encontrado com o parâmetro ID " + filmeRequest.getEstudioID() + ", favor verifique os parâmetros informados";
+            throw new MensagemDeErro(e);
         }
 
         List<Personagem> personagens = new ArrayList<>();
@@ -88,10 +90,18 @@ public class FilmeService {
 
         List<Filme> filmes = new ArrayList<>();
         for (Filme filme : fakeDatabase.recuperaFilmes()) {
-            if (nomeFilme == null || nomeFilme.equals("") && nomeDiretor == null || nomeDiretor.equals("") && nomePersonagem == null || nomePersonagem.equals("") && nomeAtor == null || nomeAtor.equals("")) {
+            boolean temPersonagemOuAtor = false;
+            for (Personagem personagem : filme.getPersonagens()) {
+                if (personagem.getNomePersonagem().contains(nomePersonagem) || personagem.getAtor().getNome().contains(nomeAtor)) {
+                    temPersonagemOuAtor = true;
+                    break;
+                }
+            }
+            if ((nomeFilme == null || nomeFilme.equals("")) && (nomeDiretor == null || nomeDiretor.equals("")) && (nomePersonagem == null || nomePersonagem.equals("")) && (nomeAtor == null || nomeAtor.equals(""))) {
                 filmes.add(filme);
-            } else if (nomeFilme.contains(filme.getNome()) || filme.getDiretor().getNome().contains(nomeDiretor) || filme.getPersonagens().contains(nomePersonagem) || filme.getPersonagens().contains(nomeAtor)) {
+            } else if (filme.getNome().contains(nomeFilme) || filme.getDiretor().getNome().contains(nomeDiretor) || temPersonagemOuAtor) {
                 filmes.add(filme);
+
             } else {
                 String e = "Ator não encontrato com os filtros nomeFilme " + nomeFilme + ", nomeDiretor " + nomeDiretor + ", nomePersonagem " + nomePersonagem + ", nomeAtor " + nomeAtor + ", favor informar outros filtros";
                 throw new MensagemDeErro(e);
@@ -99,6 +109,6 @@ public class FilmeService {
         }
         return filmes;
     }
-    
+
 
 }
