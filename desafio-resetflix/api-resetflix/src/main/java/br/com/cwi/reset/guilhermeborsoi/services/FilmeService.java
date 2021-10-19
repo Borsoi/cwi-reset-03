@@ -12,12 +12,12 @@ import java.util.List;
 public class FilmeService {
 
     private FakeDatabase fakeDatabase;
+    private PersonagemService personagemService;
 
     public FilmeService(FakeDatabase fakeDatabase) {
         this.fakeDatabase = fakeDatabase;
+        this.personagemService = new PersonagemService(fakeDatabase);
     }
-
-    private PersonagemService personagemService;
 
     //Demais Métodos
 
@@ -80,6 +80,8 @@ public class FilmeService {
 
         Filme filme = new Filme(fakeDatabase.recuperaFilmes().size() + 1, filmeRequest.getNome(), filmeRequest.getAnoLancamento(), filmeRequest.getCapaFilme(),
                 filmeRequest.getGenero(), diretorPeloID, estudioPeloID, personagens, filmeRequest.getResumo());
+
+        fakeDatabase.persisteFilme(filme);
     }
 
     public List<Filme> consultarFilmes(String nomeFilme, String nomeDiretor, String nomePersonagem, String nomeAtor) throws MensagemDeErro {
