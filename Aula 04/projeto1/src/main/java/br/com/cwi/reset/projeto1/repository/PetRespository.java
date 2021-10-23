@@ -1,6 +1,4 @@
 package br.com.cwi.reset.projeto1.repository;
-
-import br.com.cwi.reset.projeto1.domain.Filme;
 import br.com.cwi.reset.projeto1.domain.Pet;
 
 import java.util.ArrayList;
@@ -34,9 +32,8 @@ public class PetRespository {
         if (petExistente != null) {
             pets.remove(petExistente);
             pets.add(pet);
-            return pet;
         }
-        return null;
+        return petExistente;
     }
 
     public List<Pet> listarTodos() {
