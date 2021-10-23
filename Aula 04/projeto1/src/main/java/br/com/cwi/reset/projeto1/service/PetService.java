@@ -14,26 +14,27 @@ public class PetService {
     @Autowired
     private PetRepository petRespository;
 
+
     public Pet cadastrar (Pet pet) throws PetJaExistenteException {
-        Pet petExistente = petRespository.consultarPeloNome(pet.getNome());
+        Pet petExistente = petRespository.findByNome(pet.getNome());
 
         if (petExistente != null) {
             throw new PetJaExistenteException("Pet com o nome " + pet.getNome() + " já cadastrado");
         }
-        return petRespository.cadastrar(pet);
+        return petRespository.save(pet);
     }
 
     public List<Pet> listarTodos () {
-        return petRespository.listarTodos();
+        return petRespository.findAll();
     }
 
     public Pet buscarPeloNome (String nome) throws PetNaoExistenteException {
-        Pet pet = petRespository.consultarPeloNome(nome);
+        Pet pet = petRespository.findByNome(nome);
 
         if (pet == null) {
             throw new PetNaoExistenteException("Pet com o nome " + nome + " não encontrado");
         }
-        return petRespository.consultarPeloNome(nome);
+        return petRespository.findByNome(nome);
     }
 
     public void deletar (String nome) throws PetNaoExistenteException {
@@ -43,7 +44,7 @@ public class PetService {
             throw new PetNaoExistenteException("Pet com o nome " + nome + " não encontrado");
         }
 
-        petRespository.deletar(petCadastrado);
+        petRespository.delete(petCadastrado);
     }
 
     public Pet atualizar (Pet pet) throws PetNaoExistenteException {
@@ -52,7 +53,7 @@ public class PetService {
         if (petCadastrado == null) {
             throw new PetNaoExistenteException ("Pet com o nome " + pet.getNome() + " não encontrado");
         }
-        return petRespository.atualizar(pet);
+        return petRespository.save(pet);
     }
 
 }
