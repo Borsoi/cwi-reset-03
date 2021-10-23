@@ -4,17 +4,17 @@ import br.com.cwi.reset.projeto1.domain.Filme;
 import br.com.cwi.reset.projeto1.exception.FilmeJaExistenteException;
 import br.com.cwi.reset.projeto1.exception.FilmeNaoExistenteException;
 import br.com.cwi.reset.projeto1.service.FilmeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/filme")
 public class FilmeController {
 
-    private FilmeService filmeService = new FilmeService();
+    @Autowired
+    private FilmeService filmeService;
 
     @PostMapping
     public ResponseEntity<Filme> cadastrarFilme(@RequestBody Filme filme) {
