@@ -4,7 +4,7 @@ import br.com.cwi.reset.guilhermeborsoi.FakeDatabase;
 import br.com.cwi.reset.guilhermeborsoi.domain.Ator;
 import br.com.cwi.reset.guilhermeborsoi.domain.Personagem;
 import br.com.cwi.reset.guilhermeborsoi.exceptions.MensagemDeErro;
-import br.com.cwi.reset.guilhermeborsoi.requests.PersonagemRequest;
+import br.com.cwi.reset.guilhermeborsoi.requests.PersonagemAtorRequest;
 
 public class PersonagemService {
 
@@ -16,7 +16,7 @@ public class PersonagemService {
 
     //Demais Métodos
 
-    public Personagem cadastrarPersonagem (PersonagemRequest personagemRequest) throws MensagemDeErro {
+    public Personagem cadastrarPersonagem (PersonagemAtorRequest personagemRequest) throws MensagemDeErro {
         Ator atorPeloID = null;
         for (Ator ator : fakeDatabase.recuperaAtores()) {
             if (personagemRequest.getAtorID() == ator.getId()){

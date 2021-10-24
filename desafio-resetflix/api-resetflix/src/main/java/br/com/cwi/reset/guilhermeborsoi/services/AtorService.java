@@ -28,24 +28,12 @@ public class AtorService {
                     throw new MensagemDeErro(e);
                 }
             }
-            if (atorRequest.getNome().equals("") || atorRequest.getNome() == null) {
-                String e = "Campo obrigatório não informado. Favor informar o campo nome";
-                throw new MensagemDeErro(e);
-            } else if (atorRequest.getNome().indexOf(" ") == -1) {
+            if (!atorRequest.getNome().contains(" ")) {
                 String e = "Deve ser informado no mínimo nome e sobrenome para o ator";
                 throw new MensagemDeErro(e);
-            } else if (atorRequest.getDataNascimento() == null) {
-                String e = "Campo obrigatório não informado. Favor informar o campo data de nascimento";
-                throw new MensagemDeErro(e);
-            } else if (atorRequest.getDataNascimento().getYear() > LocalDate.now().getYear()) {
-                String e = "Não é possível cadastrar atores não nascidos";
-                throw new MensagemDeErro(e);
-            } else if (atorRequest.getStatusCarreira() == null) {
-                String e = "Campo obrigatório não informado. Favor informar o campo status carreira";
-                throw new MensagemDeErro(e);
-            } else if (atorRequest.getAnoInicioAtividade() == null) {
-                String e = "Campo obrigatório não informado. Favor informar o campo ano de Inicio da Atividade";
-                throw new MensagemDeErro(e);
+//            } else if (atorRequest.getDataNascimento().getYear() > LocalDate.now().getYear()) {
+//                String e = "Não é possível cadastrar atores não nascidos";
+//                throw new MensagemDeErro(e);
             } else if (atorRequest.getAnoInicioAtividade() < atorRequest.getDataNascimento().getYear()) {
                 String e = "Ano de início de atividade inválido para o ator cadastrado";
                 throw new MensagemDeErro(e);
@@ -68,7 +56,7 @@ public class AtorService {
                 if (filtroNome == null || filtroNome.equals("")) {
                    atoresEmAtividade.add(ator);
                 } else {
-                    if (ator.getNome().indexOf(filtroNome) != -1) {
+                    if (ator.getNome().contains(filtroNome)) {
                         atoresEmAtividade.add(ator);
                     }
                 }

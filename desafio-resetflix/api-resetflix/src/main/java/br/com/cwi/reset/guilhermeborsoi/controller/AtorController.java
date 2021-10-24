@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class AtorController {
     //demais métodos
     @PostMapping
     @ResponseStatus (HttpStatus.CREATED)
-    public void cadastrarAtor (@RequestBody AtorRequest atorRequest) throws MensagemDeErro {
+    public void cadastrarAtor (@RequestBody @Valid AtorRequest atorRequest) throws MensagemDeErro {
         this.atorService.criarAtor(atorRequest);
     }
 

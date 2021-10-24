@@ -22,16 +22,15 @@ public class EstudioService {
     public void criarEstudio(EstudioRequest estudioRequest) throws MensagemDeErro {
         for (Estudio estudio : fakeDatabase.recuperaEstudios()) {
             if (estudio.getNome().equals(estudioRequest)) {
-                String e = "Já existe um diretor cadastrado para o nome: " + estudioRequest.getNome();
+                String e = "Já existe um estudio cadastrado para o nome: " + estudioRequest.getNome();
                 throw new MensagemDeErro(e);
             }
         }
-        if (estudioRequest.getNome().equals("") || estudioRequest.getNome() == null) {
-            String e = "Campo obrigatório não informado. Favor informar o campo nome";
-            throw new MensagemDeErro(e);
-        } else if (estudioRequest.getDataCriacao().getYear() > LocalDate.now().getYear()) {
-            String e = "Não é possível cadastrar estúdios do futuro";
-            throw new MensagemDeErro(e);
+
+//        } if (estudioRequest.getDataCriacao().getYear() > LocalDate.now().getYear()) {
+//            String e = "Não é possível cadastrar estúdios do futuro";
+//            throw new MensagemDeErro(e);
+
         } else {
             Estudio estudio = new Estudio(fakeDatabase.recuperaEstudios().size() + 1, estudioRequest.getNome(), estudioRequest.getDescricao(),
                     estudioRequest.getDataCriacao(), estudioRequest.getStatusAtividade());

@@ -4,7 +4,7 @@ import br.com.cwi.reset.guilhermeborsoi.FakeDatabase;
 import br.com.cwi.reset.guilhermeborsoi.domain.*;
 import br.com.cwi.reset.guilhermeborsoi.exceptions.MensagemDeErro;
 import br.com.cwi.reset.guilhermeborsoi.requests.FilmeRequest;
-import br.com.cwi.reset.guilhermeborsoi.requests.PersonagemRequest;
+import br.com.cwi.reset.guilhermeborsoi.requests.PersonagemAtorRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,28 +27,6 @@ public class FilmeService {
                 String e = "Não é possível adicionar um filme com o mesmo nome";
                 throw new MensagemDeErro(e);
             }
-        }
-        if (filmeRequest.getNome().equals("") || filmeRequest.getNome() == null) {
-            String e = "Campo obrigatório não informado. Favor informar o campo Nome";
-            throw new MensagemDeErro(e);
-        } else if (filmeRequest.getAnoLancamento() == null) {
-            String e = "Campo obrigatório não informado. Favor informar o campo Ano de Lançamento";
-            throw new MensagemDeErro(e);
-        } else if (filmeRequest.getCapaFilme() == null) {
-            String e = "Campo obrigatório não informado. Favor informar o campo Capa do Filme";
-            throw new MensagemDeErro(e);
-        } else if (filmeRequest.getDiretorID() == null) {
-            String e = "Campo obrigatório não informado. Favor informar o campo DiretorID";
-            throw new MensagemDeErro(e);
-        } else if (filmeRequest.getEstudioID() == null) {
-            String e = "Campo obrigatório não informado. Favor informar o campo EstudioID";
-            throw new MensagemDeErro(e);
-        } else if (filmeRequest.getResumo() == null) {
-            String e = "Campo obrigatório não informado. Favor informar o campo Resumo";
-            throw new MensagemDeErro(e);
-        } else if (filmeRequest.getPersonagem() == null) {
-            String e = "Campo obrigatório não informado. Favor informar o campo Personagens";
-            throw new MensagemDeErro(e);
         }
 
         Diretor diretorPeloID = null;
@@ -73,8 +51,8 @@ public class FilmeService {
             throw new MensagemDeErro(e);
         }
 
-        List<Personagem> personagens = new ArrayList<>();
-        for (PersonagemRequest personagemRequest : filmeRequest.getPersonagem()) {
+        List<PersonagemAtor> personagens = new ArrayList<>();
+        for (PersonagemAtorRequest personagemRequest : filmeRequest.getPersonagem()) {
             personagens.add(personagemService.cadastrarPersonagem(personagemRequest));
         }
 

@@ -26,22 +26,12 @@ public class DiretorService {
                 String e = "Já existe um diretor cadastrado para o nome " + diretorRequest.getNome();
                 throw new MensagemDeErro(e);
             }
-        }
-        if (diretorRequest.getNome().equals("") || diretorRequest.getNome() == null) {
-            String e = "Campo obrigatório não informado. Favor informar o campo nome";
-            throw new MensagemDeErro(e);
-        } else if (diretorRequest.getNome().indexOf(" ") == -1) {
+        } if (!diretorRequest.getNome().contains(" ")) {
             String e = "Deve ser informado no mínimo nome e sobrenome para o ator";
             throw new MensagemDeErro(e);
-        } else if (diretorRequest.getDataNascimento() == null) {
-            String e = "Campo obrigatório não informado. Favor informar o campo data de nascimento";
-            throw new MensagemDeErro(e);
-        } else if (diretorRequest.getDataNascimento().getYear() > LocalDate.now().getYear()) {
-            String e = "Não é possível cadastrar atores não nascidos";
-            throw new MensagemDeErro(e);
-        } else if (diretorRequest.getAnoInicioAtividade() == null) {
-            String e = "Campo obrigatório não informado. Favor informar o campo ano de Inicio da Atividade";
-            throw new MensagemDeErro(e);
+//        } else if (diretorRequest.getDataNascimento().getYear() > LocalDate.now().getYear()) {
+//            String e = "Não é possível cadastrar atores não nascidos";
+//            throw new MensagemDeErro(e);
         } else if (diretorRequest.getAnoInicioAtividade() < diretorRequest.getDataNascimento().getYear()) {
             String e = "Ano de início de atividade inválido para o ator cadastrado";
             throw new MensagemDeErro(e);

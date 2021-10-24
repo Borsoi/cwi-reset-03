@@ -1,25 +1,32 @@
 package br.com.cwi.reset.guilhermeborsoi.requests;
 
-import br.com.cwi.reset.guilhermeborsoi.domain.Diretor;
-import br.com.cwi.reset.guilhermeborsoi.domain.Estudio;
 import br.com.cwi.reset.guilhermeborsoi.domain.Genero;
 
-import javax.swing.*;
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 public class FilmeRequest {
 
+    @NotEmpty (message = "Campo obrigatório não informado. Favor informar o campo Nome")
     String nome;
+    @NotNull (message = "Campo obrigatório não informado. Favor informar o campo Ano de Lançamento")
     Integer anoLancamento;
+    @NotEmpty (message = "Campo obrigatório não informado. Favor informar o campo Capa do Filme")
     String capaFilme;
     List <Genero> genero;
+    @NotNull (message = "Campo obrigatório não informado. Favor informar o campo DiretorID")
     Integer diretorID;
+    @NotNull (message = "Campo obrigatório não informado. Favor informar o campo EstudioID")
     Integer estudioID;
+    @NotEmpty (message = "Campo obrigatório não informado. Favor informar o campo Resumo")
     String resumo;
-    List <PersonagemRequest> personagem;
+    @NotNull (message = "Campo obrigatório não informado. Favor informar o campo Personagens")
+    List <PersonagemAtorRequest> personagem;
 
     public FilmeRequest(String nome, Integer anoLancamento, String capaFilme, List<Genero> genero, Integer diretorID,
-                        Integer estudioID, String resumo, List<PersonagemRequest> personagem) {
+                        Integer estudioID, String resumo, List<PersonagemAtorRequest> personagem) {
         this.nome = nome;
         this.anoLancamento = anoLancamento;
         this.capaFilme = capaFilme;
@@ -58,7 +65,7 @@ public class FilmeRequest {
         return resumo;
     }
 
-    public List<PersonagemRequest> getPersonagem() {
+    public List<PersonagemAtorRequest> getPersonagem() {
         return personagem;
     }
 }

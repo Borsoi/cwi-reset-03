@@ -1,15 +1,15 @@
 package br.com.cwi.reset.guilhermeborsoi.requests;
 
-import br.com.cwi.reset.guilhermeborsoi.domain.Atuacao;
+import br.com.cwi.reset.guilhermeborsoi.domain.TipoAtuacao;
 
-public class PersonagemRequest {
+public class PersonagemAtorRequest {
 
     Integer atorID;
     String nomePersonagem;
     String descricaoPersonagem;
-    Atuacao atuacao;
+    TipoAtuacao atuacao;
 
-    public PersonagemRequest(Integer atorID, String nomePersonagem, String descricaoPersonagem, Atuacao atuacao) {
+    public PersonagemAtorRequest(Integer atorID, String nomePersonagem, String descricaoPersonagem, TipoAtuacao atuacao) {
         this.atorID = atorID;
         this.nomePersonagem = nomePersonagem;
         this.descricaoPersonagem = descricaoPersonagem;
@@ -28,7 +28,7 @@ public class PersonagemRequest {
         return descricaoPersonagem;
     }
 
-    public Atuacao getAtuacao() {
+    public TipoAtuacao getAtuacao() {
         return atuacao;
     }
 }
