@@ -25,13 +25,6 @@ public class FilmeService {
     private PersonagemService personagemService;
 
 
-//    private FakeDatabase fakeDatabase;
-
-//    public FilmeService(FakeDatabase fakeDatabase) {
-//        this.fakeDatabase = fakeDatabase;
-//        this.personagemService = new PersonagemService(fakeDatabase);
-//    }
-
     //Demais Métodos
 
     public void cadastrarFilme(FilmeRequest filmeRequest) throws MensagemDeErro {

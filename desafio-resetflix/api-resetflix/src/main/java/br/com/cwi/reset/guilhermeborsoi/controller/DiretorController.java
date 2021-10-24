@@ -34,5 +34,15 @@ public class DiretorController {
         return this.diretorService.consultarDiretor(id);
     }
 
+    @PutMapping ("/{id}")
+    public void atualizarDiretor (@PathVariable Integer id, @RequestBody DiretorRequest diretorRequest) throws MensagemDeErro {
+        this.diretorService.atualizarDiretor(id, diretorRequest);
+    }
+
+    @DeleteMapping ("/{id}")
+    public void removerDiretores (@PathVariable Integer id) throws MensagemDeErro {
+        this.diretorService.removerDiretores(id);
+    }
+
 
 }

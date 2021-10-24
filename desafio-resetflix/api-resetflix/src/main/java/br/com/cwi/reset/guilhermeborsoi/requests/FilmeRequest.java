@@ -1,8 +1,6 @@
 package br.com.cwi.reset.guilhermeborsoi.requests;
 
 import br.com.cwi.reset.guilhermeborsoi.domain.Genero;
-
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.List;

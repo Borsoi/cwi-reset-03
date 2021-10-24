@@ -94,7 +94,7 @@ public class AtorService {
         return atorRepository.findAll();
     }
 
-    public void atualizar (Integer id, @NotNull AtorRequest atorRequest) throws MensagemDeErro {
+    public void atualizar (Integer id, AtorRequest atorRequest) throws MensagemDeErro {
 
         if (id.equals(null)) {
             String e = "Campo obrigatório não informado. Favor informar o campo ID";

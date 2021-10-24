@@ -31,16 +31,11 @@ public class EstudioService {
             }
         }
 
-//        } if (estudioRequest.getDataCriacao().getYear() > LocalDate.now().getYear()) {
-//            String e = "Não é possível cadastrar estúdios do futuro";
-//            throw new MensagemDeErro(e);
-
             Estudio estudio = new Estudio(estudioRequest.getNome(), estudioRequest.getDescricao(),
                     estudioRequest.getDataCriacao(), estudioRequest.getStatusAtividade());
 
             estudioRepository.save(estudio);
         }
-
 
     public List<Estudio> consultarEstudios(String filtroNome) throws MensagemDeErro {
         if (estudioRepository.count() == 0) {
