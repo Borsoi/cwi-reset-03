@@ -10,6 +10,7 @@ import java.util.List;
 public interface PetRepository extends CrudRepository <Pet, Integer> {
 
     Pet findByNome(String nome);
+
     List<Pet> findAll();
 
 }

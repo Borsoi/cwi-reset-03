@@ -1,4 +1,5 @@
 package br.com.cwi.reset.projeto1.service;
+import br.com.cwi.reset.projeto1.domain.Especie;
 import br.com.cwi.reset.projeto1.domain.Pet;
 import br.com.cwi.reset.projeto1.exception.PetJaExistenteException;
 import br.com.cwi.reset.projeto1.exception.PetNaoExistenteException;
@@ -21,6 +22,13 @@ public class PetService {
         if (petExistente != null) {
             throw new PetJaExistenteException("Pet com o nome " + pet.getNome() + " já cadastrado");
         }
+
+        //Validando se a espécie já existe
+//        Especie especie = especieRepository.findByNome(pet.getEspecie().getNome());
+//        if (especie != null) {
+//            pet.setEspecie(especie);
+//        }
+
         return petRespository.save(pet);
     }
 
@@ -48,10 +56,14 @@ public class PetService {
     }
 
     public Pet atualizar (Pet pet) throws PetNaoExistenteException {
-        Pet petCadastrado = buscarPeloNome(pet.getNome());
+        Pet petCadastrado = petRespository.findById(pet.getId()).orElse(null);
 
         if (petCadastrado == null) {
-            throw new PetNaoExistenteException ("Pet com o nome " + pet.getNome() + " não encontrado");
+            throw new PetNaoExistenteException ("Pet com o ID " + pet.getId() + " não encontrado");
+        }
+
+        if(petRespository.existsById(pet.getId())) {
+            throw new PetNaoExistenteException("Pet com o ID " + pet.getId() + " não encontrado");
         }
         return petRespository.save(pet);
     }

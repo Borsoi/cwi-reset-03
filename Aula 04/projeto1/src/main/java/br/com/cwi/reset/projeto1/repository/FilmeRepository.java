@@ -5,12 +5,11 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
-public interface FilmeRepository {
+@Repository
+public interface FilmeRepository extends CrudRepository<Filme, Integer> {
 
-    Filme findByNome(String nome);
-    Filme save(Filme filme);
-    void delete(Filme filme);
-    Filme update(Filme filme);
+    Filme findByNome(String name);
+
     List<Filme> findAll();
 
 }

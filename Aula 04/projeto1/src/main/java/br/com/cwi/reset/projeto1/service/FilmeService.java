@@ -46,6 +46,6 @@ public class FilmeService {
         if (filme == null) {
             throw new FilmeNaoExistenteException("Filme com o nome " + filme.getNome() + " não existe");
         }
-        return repository.update(filme);
+        return repository.save(filme);
     }
 }
