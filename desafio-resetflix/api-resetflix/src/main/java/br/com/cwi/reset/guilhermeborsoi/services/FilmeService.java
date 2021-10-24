@@ -21,6 +21,7 @@ public class FilmeService {
     private DiretorRepository diretorRepository;
     @Autowired
     private EstudioRepository estudioRepository;
+    @Autowired
     private PersonagemService personagemService;
 
 

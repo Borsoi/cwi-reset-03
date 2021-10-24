@@ -43,5 +43,18 @@ public class AtorController {
         return atorService.consultarAtores();
     }
 
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void atualizarAtor(@PathVariable Integer id, @RequestBody @Valid AtorRequest atorRequest) throws MensagemDeErro {
+        this.atorService.atualizar(id, atorRequest);
+    }
+
+    @DeleteMapping ("/{id}")
+    public void deletar (@PathVariable Integer id) throws MensagemDeErro {
+        this.atorService.deletar(id);
+    }
+
+
+
 
 }

@@ -1,6 +1,5 @@
 package br.com.cwi.reset.guilhermeborsoi.controller;
 
-import br.com.cwi.reset.guilhermeborsoi.FakeDatabase;
 import br.com.cwi.reset.guilhermeborsoi.domain.Estudio;
 import br.com.cwi.reset.guilhermeborsoi.exceptions.MensagemDeErro;
 import br.com.cwi.reset.guilhermeborsoi.requests.EstudioRequest;

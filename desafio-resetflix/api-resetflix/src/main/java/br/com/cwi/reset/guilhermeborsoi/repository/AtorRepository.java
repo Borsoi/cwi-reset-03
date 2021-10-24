@@ -11,4 +11,6 @@ public interface AtorRepository extends CrudRepository<Ator, Integer> {
 
     List<Ator> findAll ();
 
+    Ator findByNome (String nome);
+
 }
