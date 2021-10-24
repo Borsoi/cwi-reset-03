@@ -1,27 +1,31 @@
 package br.com.cwi.reset.guilhermeborsoi.services;
 
-import br.com.cwi.reset.guilhermeborsoi.FakeDatabase;
 import br.com.cwi.reset.guilhermeborsoi.domain.Estudio;
 import br.com.cwi.reset.guilhermeborsoi.exceptions.MensagemDeErro;
+import br.com.cwi.reset.guilhermeborsoi.repository.EstudioRepository;
 import br.com.cwi.reset.guilhermeborsoi.requests.EstudioRequest;
-
-import java.time.LocalDate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class EstudioService {
 
-    private FakeDatabase fakeDatabase;
+    @Autowired
+    private EstudioRepository estudioRepository;
 
-    public EstudioService(FakeDatabase fakeDatabase) {
-        this.fakeDatabase = fakeDatabase;
-    }
+//    private FakeDatabase fakeDatabase;
+//
+//    public EstudioService(FakeDatabase fakeDatabase) {
+//        this.fakeDatabase = fakeDatabase;
+//    }
 
     //Demais Métodos
 
     public void criarEstudio(EstudioRequest estudioRequest) throws MensagemDeErro {
-        for (Estudio estudio : fakeDatabase.recuperaEstudios()) {
-            if (estudio.getNome().equals(estudioRequest)) {
+        for (Estudio estudio : estudioRepository.findAll()) {
+            if (estudio.getNome().equals(estudioRequest.getNome())) {
                 String e = "Já existe um estudio cadastrado para o nome: " + estudioRequest.getNome();
                 throw new MensagemDeErro(e);
             }
@@ -31,21 +35,20 @@ public class EstudioService {
 //            String e = "Não é possível cadastrar estúdios do futuro";
 //            throw new MensagemDeErro(e);
 
-        } else {
-            Estudio estudio = new Estudio(fakeDatabase.recuperaEstudios().size() + 1, estudioRequest.getNome(), estudioRequest.getDescricao(),
+            Estudio estudio = new Estudio(estudioRequest.getNome(), estudioRequest.getDescricao(),
                     estudioRequest.getDataCriacao(), estudioRequest.getStatusAtividade());
 
-            fakeDatabase.persisteEstudio(estudio);
+            estudioRepository.save(estudio);
         }
-    }
+
 
     public List<Estudio> consultarEstudios(String filtroNome) throws MensagemDeErro {
-        if (fakeDatabase.recuperaEstudios().isEmpty()) {
+        if (estudioRepository.count() == 0) {
             String e = "Nenhum estúdio cadastrado, favor cadastar estúdios";
             throw new MensagemDeErro(e);
         }
         List<Estudio> estudiosLista = new ArrayList<>();
-        for (Estudio estudio : fakeDatabase.recuperaEstudios()) {
+        for (Estudio estudio : estudioRepository.findAll()) {
             if (filtroNome.equals("") || filtroNome == null) {
                 estudiosLista.add(estudio);
             } else if (estudio.getNome().contains(filtroNome)) {
@@ -63,7 +66,7 @@ public class EstudioService {
             String e = "Campo obrigatório não informado. Favor informar o campo ID";
             throw new MensagemDeErro(e);
         }
-        for (Estudio estudio : fakeDatabase.recuperaEstudios())
+        for (Estudio estudio : estudioRepository.findAll())
             if (id == estudio.getId()) {
                 return estudio;
             }

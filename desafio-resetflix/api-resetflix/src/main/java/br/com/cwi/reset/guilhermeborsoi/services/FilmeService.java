@@ -1,28 +1,40 @@
 package br.com.cwi.reset.guilhermeborsoi.services;
 
-import br.com.cwi.reset.guilhermeborsoi.FakeDatabase;
 import br.com.cwi.reset.guilhermeborsoi.domain.*;
 import br.com.cwi.reset.guilhermeborsoi.exceptions.MensagemDeErro;
+import br.com.cwi.reset.guilhermeborsoi.repository.DiretorRepository;
+import br.com.cwi.reset.guilhermeborsoi.repository.EstudioRepository;
+import br.com.cwi.reset.guilhermeborsoi.repository.FilmeRepository;
 import br.com.cwi.reset.guilhermeborsoi.requests.FilmeRequest;
 import br.com.cwi.reset.guilhermeborsoi.requests.PersonagemAtorRequest;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class FilmeService {
 
-    private FakeDatabase fakeDatabase;
+    @Autowired
+    private FilmeRepository filmeRepository;
+    @Autowired
+    private DiretorRepository diretorRepository;
+    @Autowired
+    private EstudioRepository estudioRepository;
     private PersonagemService personagemService;
 
-    public FilmeService(FakeDatabase fakeDatabase) {
-        this.fakeDatabase = fakeDatabase;
-        this.personagemService = new PersonagemService(fakeDatabase);
-    }
+
+//    private FakeDatabase fakeDatabase;
+
+//    public FilmeService(FakeDatabase fakeDatabase) {
+//        this.fakeDatabase = fakeDatabase;
+//        this.personagemService = new PersonagemService(fakeDatabase);
+//    }
 
     //Demais Métodos
 
     public void cadastrarFilme(FilmeRequest filmeRequest) throws MensagemDeErro {
-        for (Filme filmes : fakeDatabase.recuperaFilmes()) {
+        for (Filme filmes : filmeRepository.findAll()) {
             if (filmeRequest.getNome().equals(filmes.getNome())) {
                 String e = "Não é possível adicionar um filme com o mesmo nome";
                 throw new MensagemDeErro(e);
@@ -30,7 +42,7 @@ public class FilmeService {
         }
 
         Diretor diretorPeloID = null;
-        for (Diretor diretor : fakeDatabase.recuperaDiretores()) {
+        for (Diretor diretor : diretorRepository.findAll()) {
             if (filmeRequest.getDiretorID() == diretor.getId()) {
                 diretorPeloID = diretor;
             }
@@ -41,7 +53,7 @@ public class FilmeService {
         }
 
         Estudio estudioPeloID = null;
-        for (Estudio estudio : fakeDatabase.recuperaEstudios()) {
+        for (Estudio estudio : estudioRepository.findAll()) {
             if (filmeRequest.getEstudioID() == estudio.getId()) {
                 estudioPeloID = estudio;
             }
@@ -56,23 +68,23 @@ public class FilmeService {
             personagens.add(personagemService.cadastrarPersonagem(personagemRequest));
         }
 
-        Filme filme = new Filme(fakeDatabase.recuperaFilmes().size() + 1, filmeRequest.getNome(), filmeRequest.getAnoLancamento(), filmeRequest.getCapaFilme(),
-                filmeRequest.getGenero(), diretorPeloID, estudioPeloID, personagens, filmeRequest.getResumo());
+        Filme filme = new Filme(filmeRequest.getNome(), filmeRequest.getAnoLancamento(), filmeRequest.getCapaFilme(),
+                filmeRequest.getGenero(), estudioPeloID, diretorPeloID, personagens, filmeRequest.getResumo());
 
-        fakeDatabase.persisteFilme(filme);
+        filmeRepository.save(filme);
     }
 
     public List<Filme> consultarFilmes(String nomeFilme, String nomeDiretor, String nomePersonagem, String nomeAtor) throws MensagemDeErro {
-        if (fakeDatabase.recuperaFilmes().isEmpty()) {
+        if (filmeRepository.count() == 0) {
             String e = "Nenhum filme cadastrado, favor cadastar filme";
             throw new MensagemDeErro(e);
         }
 
         List<Filme> filmes = new ArrayList<>();
-        for (Filme filme : fakeDatabase.recuperaFilmes()) {
+        for (Filme filme : filmeRepository.findAll()) {
             boolean temPersonagemOuAtor = false;
-            for (Personagem personagem : filme.getPersonagens()) {
-                if (personagem.getNomePersonagem().contains(nomePersonagem) || personagem.getAtor().getNome().contains(nomeAtor)) {
+            for (PersonagemAtor personagemAtor : filme.getPersonagens()) {
+                if (personagemAtor.getNomePersonagem().contains(nomePersonagem) || personagemAtor.getAtor().getNome().contains(nomeAtor)) {
                     temPersonagemOuAtor = true;
                     break;
                 }

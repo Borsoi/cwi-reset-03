@@ -1,26 +1,35 @@
 package br.com.cwi.reset.guilhermeborsoi.services;
 
-import br.com.cwi.reset.guilhermeborsoi.FakeDatabase;
 import br.com.cwi.reset.guilhermeborsoi.domain.Ator;
-import br.com.cwi.reset.guilhermeborsoi.domain.Personagem;
+import br.com.cwi.reset.guilhermeborsoi.domain.PersonagemAtor;
 import br.com.cwi.reset.guilhermeborsoi.exceptions.MensagemDeErro;
+import br.com.cwi.reset.guilhermeborsoi.repository.AtorRepository;
+import br.com.cwi.reset.guilhermeborsoi.repository.PersonagemAtorRepository;
 import br.com.cwi.reset.guilhermeborsoi.requests.PersonagemAtorRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PersonagemService {
 
-    private FakeDatabase fakeDatabase;
-
-    public PersonagemService (FakeDatabase fakeDatabase) {
-        this.fakeDatabase = fakeDatabase;
-    }
+    @Autowired
+    private PersonagemAtorRepository personagemAtorRepository;
+    @Autowired
+    private AtorRepository atorRepository;
+//
+//    private FakeDatabase fakeDatabase;
+//
+//    public PersonagemService (FakeDatabase fakeDatabase) {
+//        this.fakeDatabase = fakeDatabase;
+//    }
 
     //Demais Métodos
 
-    public Personagem cadastrarPersonagem (PersonagemAtorRequest personagemRequest) throws MensagemDeErro {
+    public PersonagemAtor cadastrarPersonagem (PersonagemAtorRequest personagemRequest) throws MensagemDeErro {
         Ator atorPeloID = null;
-        for (Ator ator : fakeDatabase.recuperaAtores()) {
+        for (Ator ator : atorRepository.findAll()) {
             if (personagemRequest.getAtorID() == ator.getId()){
-                for (Personagem personagens : fakeDatabase.recuperaPersonagens()) {
+                for (PersonagemAtor personagens : personagemAtorRepository.findAll()) {
                     if (personagemRequest.getNomePersonagem().equals(personagens.getNomePersonagem())){
                         String e = "Não é permitido informar o mesmo ator/personagem mais de uma vez para o mesmo filme";
                         throw new MensagemDeErro(e);
@@ -35,10 +44,11 @@ public class PersonagemService {
             throw new MensagemDeErro(e);
         }
 
-        Personagem personagem = new Personagem(fakeDatabase.recuperaPersonagens().size() +1 ,atorPeloID,personagemRequest.getNomePersonagem(),
+        PersonagemAtor personagemAtor = new PersonagemAtor (atorPeloID,personagemRequest.getNomePersonagem(),
                 personagemRequest.getDescricaoPersonagem(), personagemRequest.getAtuacao());
 
-        fakeDatabase.persistePersonagem(personagem);
-        return personagem;
+        personagemAtorRepository.save(personagemAtor);
+
+        return personagemAtor;
     }
 }

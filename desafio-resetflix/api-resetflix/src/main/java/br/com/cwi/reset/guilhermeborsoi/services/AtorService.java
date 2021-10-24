@@ -1,28 +1,32 @@
 package br.com.cwi.reset.guilhermeborsoi.services;
 
-import br.com.cwi.reset.guilhermeborsoi.FakeDatabase;
 import br.com.cwi.reset.guilhermeborsoi.domain.Ator;
 import br.com.cwi.reset.guilhermeborsoi.domain.StatusCarreira;
 import br.com.cwi.reset.guilhermeborsoi.exceptions.MensagemDeErro;
+import br.com.cwi.reset.guilhermeborsoi.repository.AtorRepository;
 import br.com.cwi.reset.guilhermeborsoi.requests.AtorRequest;
-
-import java.time.LocalDate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class AtorService {
 
-    private FakeDatabase fakeDatabase;
+//    private FakeDatabase fakeDatabase;
 
-    public AtorService(FakeDatabase fakeDatabase) {
-        this.fakeDatabase = fakeDatabase;
-    }
+    @Autowired
+    private AtorRepository atorRepository;
+
+//    public AtorService(FakeDatabase fakeDatabase) {
+//        this.fakeDatabase = fakeDatabase;
+//    }
 
     // Demais métodos da classe
 
     public void criarAtor(AtorRequest atorRequest) throws MensagemDeErro {
 
-            for (Ator atores :fakeDatabase.recuperaAtores()) {
+            for (Ator atores :atorRepository.findAll()) {
                 if (atores.getNome().equals(atorRequest.getNome())) {
                     String e = "Já existe um diretor cadastrado para o nome " + atorRequest.getNome();
                     throw new MensagemDeErro(e);
@@ -38,21 +42,21 @@ public class AtorService {
                 String e = "Ano de início de atividade inválido para o ator cadastrado";
                 throw new MensagemDeErro(e);
             }
-            Ator ator = new Ator(fakeDatabase.recuperaAtores().size() + 1, atorRequest.getNome(), atorRequest.getDataNascimento(),
+            Ator ator = new Ator(atorRequest.getNome(), atorRequest.getDataNascimento(),
                 atorRequest.getStatusCarreira(), atorRequest.getAnoInicioAtividade());
 
-        fakeDatabase.persisteAtor(ator);
+        atorRepository.save(ator);
     }
 
     public List listarAtoresEmAtividade (String filtroNome) throws MensagemDeErro {
-        if (fakeDatabase.recuperaAtores().isEmpty()) {
+        if (atorRepository.count() == 0) {
             String e = "Nenhum ator cadastrado, favor cadastrar atores";
             throw new MensagemDeErro(e);
         }
         List<Ator> atoresEmAtividade = new ArrayList<>();
 
-        for (Ator ator : fakeDatabase.recuperaAtores()) {
-            if (ator.getStatusCarreira().equals(StatusCarreira.EM_ATIVIDADE.getDescricao())) {
+        for (Ator ator : atorRepository.findAll()) {
+            if (ator.getStatusCarreira().equals(StatusCarreira.EM_ATIVIDADE)) {
                 if (filtroNome == null || filtroNome.equals("")) {
                    atoresEmAtividade.add(ator);
                 } else {
@@ -74,7 +78,7 @@ public class AtorService {
             String e = ("Campo obrigatório não informado. Favor informar o campo ID" );
             throw new MensagemDeErro(e);
         }
-        for (Ator ator : fakeDatabase.recuperaAtores()) {
+        for (Ator ator : atorRepository.findAll()) {
             if (ator.getId() == id) {
                 return ator;
             }
@@ -85,11 +89,11 @@ public class AtorService {
 
 
     public List consultarAtores () throws MensagemDeErro {
-        if (fakeDatabase.recuperaAtores().isEmpty()) {
+        if (atorRepository.count() == 0) {
             String e = "Nenhum ator cadastrado, favor cadastar atores";
             throw new MensagemDeErro(e);
         } else
-        return fakeDatabase.recuperaAtores();
+        return atorRepository.findAll();
     }
 
 }

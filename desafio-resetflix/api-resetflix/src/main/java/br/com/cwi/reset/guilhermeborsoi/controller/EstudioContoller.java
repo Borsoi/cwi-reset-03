@@ -5,6 +5,7 @@ import br.com.cwi.reset.guilhermeborsoi.domain.Estudio;
 import br.com.cwi.reset.guilhermeborsoi.exceptions.MensagemDeErro;
 import br.com.cwi.reset.guilhermeborsoi.requests.EstudioRequest;
 import br.com.cwi.reset.guilhermeborsoi.services.EstudioService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,11 +15,8 @@ import java.util.List;
 @RequestMapping ("/estudios")
 public class EstudioContoller {
 
+    @Autowired
     private EstudioService estudioService;
-
-    public EstudioContoller() {
-        this.estudioService = new EstudioService(FakeDatabase.getInstance());
-    }
 
     //Demais Métodos
 

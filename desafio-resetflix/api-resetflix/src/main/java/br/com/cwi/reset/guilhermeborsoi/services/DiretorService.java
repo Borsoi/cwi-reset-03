@@ -1,27 +1,32 @@
 package br.com.cwi.reset.guilhermeborsoi.services;
 
-import br.com.cwi.reset.guilhermeborsoi.FakeDatabase;
+
 import br.com.cwi.reset.guilhermeborsoi.domain.Diretor;
 import br.com.cwi.reset.guilhermeborsoi.exceptions.MensagemDeErro;
+import br.com.cwi.reset.guilhermeborsoi.repository.DiretorRepository;
 import br.com.cwi.reset.guilhermeborsoi.requests.DiretorRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class DiretorService {
 
-    private FakeDatabase fakeDatabase;
+    @Autowired
+    private DiretorRepository diretorRepository;
 
-    public DiretorService(FakeDatabase fakeDatabase) {
-        this.fakeDatabase = fakeDatabase;
-    }
+//    private FakeDatabase fakeDatabase;
+//
+//    public DiretorService(FakeDatabase fakeDatabase) {
+//        this.fakeDatabase = fakeDatabase;
 
     // Demais métodos da classe
 
     public void cadastrarDiretor(DiretorRequest diretorRequest) throws MensagemDeErro {
 
-        for (Diretor diretores : fakeDatabase.recuperaDiretores()) {
+        for (Diretor diretores : diretorRepository.findAll()) {
             if (diretores.getNome().equals(diretorRequest.getNome())) {
                 String e = "Já existe um diretor cadastrado para o nome " + diretorRequest.getNome();
                 throw new MensagemDeErro(e);
@@ -37,23 +42,23 @@ public class DiretorService {
             throw new MensagemDeErro(e);
         }
 
-        Diretor diretor = new Diretor(fakeDatabase.recuperaDiretores().size() + 1, diretorRequest.getNome(),
+        Diretor diretor = new Diretor(diretorRequest.getNome(),
             diretorRequest.getDataNascimento(), diretorRequest.getAnoInicioAtividade());
 
-        fakeDatabase.persisteDiretor(diretor);
+        diretorRepository.save(diretor);
     }
 
 
     public List listarDiretores (String filtroNome) throws MensagemDeErro {
-        if (fakeDatabase.recuperaDiretores().isEmpty()) {
+        if (diretorRepository.count() == 0) {
             String e = "Nenhum diretor cadastrado, favor cadastrar diretores";
             throw new MensagemDeErro(e);
         }
         List <Diretor> diretores = new ArrayList<>();
-        for (Diretor diretor : fakeDatabase.recuperaDiretores()) {
+        for (Diretor diretor : diretorRepository.findAll()) {
             if (filtroNome.equals("") || filtroNome == null) {
                 diretores.add(diretor);
-            } else if (diretor.getNome().indexOf(filtroNome) != - 1) {
+            } else if (diretor.getNome().contains(filtroNome)) {
                     diretores.add(diretor);
             }
             else {
@@ -69,12 +74,12 @@ public class DiretorService {
             String e = "Campo obrigatório não informado. Favor informar o campo ID";
             throw new MensagemDeErro(e);
         }
-        for (Diretor diretor : fakeDatabase.recuperaDiretores()) {
+        for (Diretor diretor : diretorRepository.findAll()) {
             if (id == diretor.getId()) {
                 return diretor;
             }
         }
-        String e = "Nenhum diretor encontrado com o parâmetro " + id + ", favor verifique os parâmetros informados.";
+        String e = "Nenhum diretor encontrado com o parâmetro ID " + id + ", favor verifique os parâmetros informados.";
         throw new MensagemDeErro(e);
     }
 
