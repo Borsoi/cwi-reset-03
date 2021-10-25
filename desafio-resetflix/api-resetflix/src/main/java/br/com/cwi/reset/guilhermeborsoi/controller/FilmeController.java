@@ -17,8 +17,6 @@ public class FilmeController {
     @Autowired
     private FilmeService filmeService;
 
-    // Demais Métodos
-
     @PostMapping
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void cadastrarFilme (@RequestBody FilmeRequest filmeRequest) throws MensagemDeErro {
@@ -29,6 +27,11 @@ public class FilmeController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public List<Filme> consultarFilmes (@RequestParam String nomeFilme, String nomeDiretor, String nomePersonagem, String nomeAtor) throws MensagemDeErro {
         return this.filmeService.consultarFilmes(nomeFilme, nomeDiretor, nomePersonagem, nomeAtor);
+    }
+
+    @DeleteMapping ("/{id}")
+    public void removerFilme (@PathVariable Integer id) throws MensagemDeErro {
+        this.filmeService.removerFilme(id);
     }
 
 }

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FilmeService {
@@ -95,6 +96,24 @@ public class FilmeService {
         }
         return filmes;
     }
+
+    public void removerFilme (Integer id) throws MensagemDeErro {
+        if (id.equals(null)) {
+            String e = "Campo obrigatório não informado. Favor informar o campo ID";
+            throw new MensagemDeErro(e);
+        }
+        Optional<Filme> filmeExistenteID = filmeRepository.findById(id);
+        if (!filmeExistenteID.isPresent()) {
+            String e = "Nenhum ator encontrado com o parâmetro id " + id + " favor verifique os parâmetros informados";
+            throw new MensagemDeErro(e);
+        }
+
+        Filme filmeExistente = filmeExistenteID.get();
+
+        filmeRepository.delete(filmeExistente);
+
+    }
+
 
 
 }
