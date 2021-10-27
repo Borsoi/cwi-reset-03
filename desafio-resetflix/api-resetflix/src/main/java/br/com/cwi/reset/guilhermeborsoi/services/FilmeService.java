@@ -60,7 +60,7 @@ public class FilmeService {
 
         List<PersonagemAtor> personagens = new ArrayList<>();
         for (PersonagemAtorRequest personagemRequest : filmeRequest.getPersonagem()) {
-            personagens.add(personagemService.cadastrarPersonagem(personagemRequest));
+            personagens.add(personagemService.cadastrarPersonagem(personagemRequest, filmeRequest));
         }
 
         Filme filme = new Filme(filmeRequest.getNome(), filmeRequest.getAnoLancamento(), filmeRequest.getCapaFilme(),
@@ -110,9 +110,13 @@ public class FilmeService {
 
         Filme filmeExistente = filmeExistenteID.get();
 
+        List<PersonagemAtor> personagemAtorsParaDeletar = filmeExistente.getPersonagens();
+        personagemService.deletarPersonagens(personagemAtorsParaDeletar);
+
         filmeRepository.delete(filmeExistente);
 
     }
+
 
 
 

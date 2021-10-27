@@ -12,6 +12,8 @@ import br.com.cwi.reset.guilhermeborsoi.requests.PersonagemAtorRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PersonagemService {
 
@@ -27,14 +29,17 @@ public class PersonagemService {
 
     //Demais Métodos
 
-    public PersonagemAtor cadastrarPersonagem(PersonagemAtorRequest personagemRequest) throws MensagemDeErro {
+    public PersonagemAtor cadastrarPersonagem(PersonagemAtorRequest personagemRequest, FilmeRequest filmeRequest) throws MensagemDeErro {
         Ator atorPeloID = null;
         for (Ator ator : atorRepository.findAll()) {
             if (personagemRequest.getAtorID().equals(ator.getId())) {
                 for (PersonagemAtor personagens : personagemAtorRepository.findAll()) {
-                    if (personagemRequest.getNomePersonagem().equals(personagens.getNomePersonagem())) {
-                        String e = "Não é permitido informar o mesmo ator/personagem mais de uma vez para o mesmo filme";
-                        throw new MensagemDeErro(e);
+                    if (personagemRequest.getNomePersonagem().equals(personagens.getNomePersonagem()))
+                        for (Filme filme : filmeRepository.findAll()) {
+                            if (filme.getNome().equals(filmeRequest.getNome())) {
+                                String e = "Não é permitido informar o mesmo ator/personagem mais de uma vez para o mesmo filme";
+                                throw new MensagemDeErro(e);
+                        }
                     }
                 }
 
@@ -54,4 +59,11 @@ public class PersonagemService {
 
         return personagemAtor;
     }
+
+    public void deletarPersonagens (List<PersonagemAtor> personagemAtors) {
+        for (PersonagemAtor personagemAtor : personagemAtors)
+        personagemAtorRepository.delete(personagemAtor);
+    }
+
+
 }
