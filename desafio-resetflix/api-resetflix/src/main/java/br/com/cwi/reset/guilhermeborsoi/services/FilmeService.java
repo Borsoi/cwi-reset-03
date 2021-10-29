@@ -25,7 +25,6 @@ public class FilmeService {
     @Autowired
     private PersonagemService personagemService;
 
-
     //Demais Métodos
 
     public void cadastrarFilme(FilmeRequest filmeRequest) throws MensagemDeErro {

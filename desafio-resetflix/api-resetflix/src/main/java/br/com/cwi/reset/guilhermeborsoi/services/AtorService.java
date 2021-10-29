@@ -9,8 +9,6 @@ import br.com.cwi.reset.guilhermeborsoi.requests.AtorRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,71 +24,79 @@ public class AtorService {
 
     public void criarAtor(AtorRequest atorRequest) throws MensagemDeErro {
 
-            for (Ator ator :atorRepository.findAll()) {
-                if (ator.getNome().equals(atorRequest.getNome())) {
-                    String e = "Já existe um ator cadastrado para o nome " + atorRequest.getNome();
-                    throw new MensagemDeErro(e);
-                }
-            }
+        Optional<Ator> atorExistente = atorRepository.findByNome(atorRequest.getNome());
+        if (atorExistente.isPresent()) {
+            String e = "Já existe um ator cadastrado para o nome " + atorRequest.getNome();
+            throw new MensagemDeErro(e);
+        }
 
-            if (!atorRequest.getNome().contains(" ")) {
-                String e = "Deve ser informado no mínimo nome e sobrenome para o ator";
-                throw new MensagemDeErro(e);
-            } else if (atorRequest.getAnoInicioAtividade() < atorRequest.getDataNascimento().getYear()) {
-                String e = "Ano de início de atividade inválido para o ator cadastrado";
-                throw new MensagemDeErro(e);
-            }
-            Ator ator = new Ator(atorRequest.getNome(), atorRequest.getDataNascimento(),
-                atorRequest.getStatusCarreira(), atorRequest.getAnoInicioAtividade());
+        if (!atorRequest.getNome().contains(" ")) {
+            String e = "Deve ser informado no mínimo nome e sobrenome para o ator";
+            throw new MensagemDeErro(e);
+        }
+
+        if (atorRequest.getAnoInicioAtividade() < atorRequest.getDataNascimento().getYear()) {
+            String e = "Ano de início de atividade inválido para o ator cadastrado";
+            throw new MensagemDeErro(e);
+        }
+
+        Ator ator = new Ator(atorRequest.getNome(), atorRequest.getDataNascimento(),
+               atorRequest.getStatusCarreira(), atorRequest.getAnoInicioAtividade());
 
         atorRepository.save(ator);
+
     }
 
-    public List listarAtoresEmAtividade (String filtroNome) throws MensagemDeErro {
-        if (atorRepository.count() == 0) {
+    public List<Ator> listarAtoresEmAtividade (String filtroNome) throws MensagemDeErro {
+
+        if (atorRepository.findAll().isEmpty()) {
             String e = "Nenhum ator cadastrado, favor cadastrar atores";
             throw new MensagemDeErro(e);
         }
-        List<Ator> atoresEmAtividade = new ArrayList<>();
 
-        for (Ator ator : atorRepository.findAll()) {
-            if (ator.getStatusCarreira().equals(StatusCarreira.EM_ATIVIDADE)) {
-                if (filtroNome == null || filtroNome.equals("")) {
-                    atoresEmAtividade.add(ator);
-                } else {
-                    if (ator.getNome().contains(filtroNome)) {
-                        atoresEmAtividade.add(ator);
-                    }
-                }
+        List<Ator> atoresEmAtividade;
+
+        if (filtroNome.isEmpty()) {
+            atoresEmAtividade = atorRepository.findByStatusCarreira(StatusCarreira.EM_ATIVIDADE);
+        }
+
+        else {
+            atoresEmAtividade = atorRepository.findByNomeAndStatusCarreira(filtroNome, StatusCarreira.EM_ATIVIDADE);
+
+            if (atoresEmAtividade.isEmpty()) {
+                String e = "Ator não encontrato com o filtro " + filtroNome + ", favor informar outro filtro";
+                throw new MensagemDeErro(e);
             }
         }
 
-        if (atoresEmAtividade.isEmpty()) {
-            String e = "Ator não encontrato com o filtro " + filtroNome + ", favor informar outro filtro";
-            throw new MensagemDeErro(e);
-        }
         return atoresEmAtividade;
+
     }
 
     public Ator consultarAtor (Integer id) throws MensagemDeErro {
-        if (id == null) {
+
+        if ( id.equals(null)) {
             String e = ("Campo obrigatório não informado. Favor informar o campo ID" );
             throw new MensagemDeErro(e);
         }
-        for (Ator ator : atorRepository.findAll()) {
-            if (ator.getId() == id) {
-                return ator;
-            }
+
+        Optional<Ator> consultaAtor = atorRepository.findById(id);
+
+        if (!consultaAtor.isPresent()) {
+            String e = ("Nenhum ator encontrado com o parâmetro " + id + ", favor verifique os parâmetros informados");
+            throw new MensagemDeErro(e);
         }
-        String e = ("Nenhum ator encontrado com o parâmetro " + id + ", favor verifique os parâmetros informados");
-        throw new MensagemDeErro(e);
+        Ator atorExistente = consultaAtor.get();
+
+        return atorExistente;
+
     }
 
-    public List consultarAtores () throws MensagemDeErro {
-        if (atorRepository.count() == 0) {
+    public List<Ator> consultarAtores () throws MensagemDeErro {
+        if (atorRepository.findAll().isEmpty()) {
             String e = "Nenhum ator cadastrado, favor cadastar atores";
             throw new MensagemDeErro(e);
-        } else
+        }
         return atorRepository.findAll();
     }
 
@@ -101,27 +107,29 @@ public class AtorService {
             throw new MensagemDeErro(e);
         }
 
-        Optional<Ator> atorExistenteID = atorRepository.findById(id);
-
-        if (!atorExistenteID.isPresent()) {
+        Optional<Ator> atorCadastradoPeloID = atorRepository.findById(id);
+        if (!atorCadastradoPeloID.isPresent()) {
             String e = "Nenhum ator encontrado com o parâmetro id " + id + " favor verifique os parâmetros informados";
             throw new MensagemDeErro(e);
         }
 
-        Ator atorAtualizado = new Ator(atorRequest.getNome(), atorRequest.getDataNascimento(),
-                atorRequest.getStatusCarreira(), atorRequest.getAnoInicioAtividade());
+        Ator atorCadastrado = atorCadastradoPeloID.get();
 
-        atorAtualizado.setId(atorExistenteID.get().getId());
+        Optional<Ator> atorCadastradoPeloNome = atorRepository.findByNome(atorRequest.getNome());
 
-        for (Ator ator : atorRepository.findAll()) {
-            if (ator.getNome().equals(atorRequest.getNome())) {
-                if (ator.getId().equals(atorAtualizado.getId())) {
-                    String e = "Já existe um ator cadastrado para o nome " + atorRequest.getNome();
-                    throw new MensagemDeErro(e);
-                }
+        if(atorCadastradoPeloNome.isPresent()) {
+            if (!id.equals(atorCadastradoPeloNome.get().getId())) {
+                String e = "Já existe um ator cadastrado para o nome " + atorRequest.getNome();
+                throw new MensagemDeErro(e);
             }
-            atorRepository.save(atorAtualizado);
         }
+
+        atorCadastrado.setNome(atorRequest.getNome());
+        atorCadastrado.setDataNascimento(atorRequest.getDataNascimento());
+        atorCadastrado.setStatusCarreira(atorRequest.getStatusCarreira());
+        atorCadastrado.setAnoInicioAtividade(atorRequest.getAnoInicioAtividade());
+
+        atorRepository.save(atorCadastrado);
     }
 
     public void deletar (Integer id) throws MensagemDeErro {
@@ -146,10 +154,5 @@ public class AtorService {
 
         atorRepository.delete(atorExistente);
     }
-
-
-
-
-
 
 }

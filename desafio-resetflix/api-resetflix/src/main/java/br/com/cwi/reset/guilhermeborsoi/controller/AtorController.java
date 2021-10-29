@@ -27,7 +27,7 @@ public class AtorController {
 
     @GetMapping ("/em-atividade")
     @ResponseStatus (HttpStatus.CREATED)
-    public List listarAtoresEmAtividade (@RequestParam String filtroNome) throws MensagemDeErro {
+    public List<Ator> listarAtoresEmAtividade (@RequestParam String filtroNome) throws MensagemDeErro {
        return this.atorService.listarAtoresEmAtividade(filtroNome);
     }
 
@@ -39,7 +39,7 @@ public class AtorController {
 
     @GetMapping
     @ResponseStatus (HttpStatus.CREATED)
-    public List consultarAtores () throws MensagemDeErro {
+    public List<Ator> consultarAtores () throws MensagemDeErro {
         return atorService.consultarAtores();
     }
 

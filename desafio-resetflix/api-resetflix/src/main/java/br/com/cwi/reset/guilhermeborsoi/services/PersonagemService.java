@@ -62,7 +62,7 @@ public class PersonagemService {
 
     public void deletarPersonagens (List<PersonagemAtor> personagemAtors) {
         for (PersonagemAtor personagemAtor : personagemAtors)
-        personagemAtorRepository.delete(personagemAtor);
+            personagemAtorRepository.delete(personagemAtor);
     }
 
 
