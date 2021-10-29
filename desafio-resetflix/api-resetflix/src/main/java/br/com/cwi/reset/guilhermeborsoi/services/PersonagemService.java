@@ -3,7 +3,7 @@ package br.com.cwi.reset.guilhermeborsoi.services;
 import br.com.cwi.reset.guilhermeborsoi.domain.Ator;
 import br.com.cwi.reset.guilhermeborsoi.domain.Filme;
 import br.com.cwi.reset.guilhermeborsoi.domain.PersonagemAtor;
-import br.com.cwi.reset.guilhermeborsoi.exceptions.MensagemDeErro;
+import br.com.cwi.reset.guilhermeborsoi.exceptions.MensagemDeErroException;
 import br.com.cwi.reset.guilhermeborsoi.repository.AtorRepository;
 import br.com.cwi.reset.guilhermeborsoi.repository.FilmeRepository;
 import br.com.cwi.reset.guilhermeborsoi.repository.PersonagemAtorRepository;
@@ -29,7 +29,7 @@ public class PersonagemService {
 
     //Demais Métodos
 
-    public PersonagemAtor cadastrarPersonagem(PersonagemAtorRequest personagemRequest, FilmeRequest filmeRequest) throws MensagemDeErro {
+    public PersonagemAtor cadastrarPersonagem(PersonagemAtorRequest personagemRequest, FilmeRequest filmeRequest) throws MensagemDeErroException {
         Ator atorPeloID = null;
         for (Ator ator : atorRepository.findAll()) {
             if (personagemRequest.getAtorID().equals(ator.getId())) {
@@ -38,7 +38,7 @@ public class PersonagemService {
                         for (Filme filme : filmeRepository.findAll()) {
                             if (filme.getNome().equals(filmeRequest.getNome())) {
                                 String e = "Não é permitido informar o mesmo ator/personagem mais de uma vez para o mesmo filme";
-                                throw new MensagemDeErro(e);
+                                throw new MensagemDeErroException(e);
                         }
                     }
                 }
@@ -49,7 +49,7 @@ public class PersonagemService {
 
          if (atorPeloID == null) {
             String e = "Nenhum ator encontrado com o parâmetro ID " + personagemRequest.getAtorID() + ", favor verifique os parâmetros informados";
-            throw new MensagemDeErro(e);
+            throw new MensagemDeErroException(e);
         }
 
         PersonagemAtor personagemAtor = new PersonagemAtor (atorPeloID,personagemRequest.getNomePersonagem(),

@@ -15,7 +15,7 @@ public interface AtorRepository extends CrudRepository<Ator, Integer> {
 
     Optional<Ator> findByNome (String nome);
 
-    List<Ator> findByNomeAndStatusCarreira (String nome, StatusCarreira statusCarreira);
+    List<Ator> findByNomeContainsAndStatusCarreira(String nome, StatusCarreira statusCarreira);
 
     List<Ator> findByStatusCarreira (StatusCarreira statusCarreira);
 

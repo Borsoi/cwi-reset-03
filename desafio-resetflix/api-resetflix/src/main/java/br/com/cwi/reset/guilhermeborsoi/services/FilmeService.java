@@ -1,7 +1,7 @@
 package br.com.cwi.reset.guilhermeborsoi.services;
 
 import br.com.cwi.reset.guilhermeborsoi.domain.*;
-import br.com.cwi.reset.guilhermeborsoi.exceptions.MensagemDeErro;
+import br.com.cwi.reset.guilhermeborsoi.exceptions.MensagemDeErroException;
 import br.com.cwi.reset.guilhermeborsoi.repository.DiretorRepository;
 import br.com.cwi.reset.guilhermeborsoi.repository.EstudioRepository;
 import br.com.cwi.reset.guilhermeborsoi.repository.FilmeRepository;
@@ -27,11 +27,11 @@ public class FilmeService {
 
     //Demais Métodos
 
-    public void cadastrarFilme(FilmeRequest filmeRequest) throws MensagemDeErro {
+    public void cadastrarFilme(FilmeRequest filmeRequest) throws MensagemDeErroException {
         for (Filme filmes : filmeRepository.findAll()) {
             if (filmeRequest.getNome().equals(filmes.getNome())) {
                 String e = "Não é possível adicionar um filme com o mesmo nome";
-                throw new MensagemDeErro(e);
+                throw new MensagemDeErroException(e);
             }
         }
 
@@ -43,7 +43,7 @@ public class FilmeService {
         }
         if (diretorPeloID == null) {
             String e = "Nenhum diretor encontrado com o parâmetro ID " + filmeRequest.getDiretorID() + ", favor verifique os parâmetros informados";
-            throw new MensagemDeErro(e);
+            throw new MensagemDeErroException(e);
         }
 
         Estudio estudioPeloID = null;
@@ -54,7 +54,7 @@ public class FilmeService {
         }
         if (estudioPeloID == null) {
             String e = "Nenhum estudio encontrado com o parâmetro ID " + filmeRequest.getEstudioID() + ", favor verifique os parâmetros informados";
-            throw new MensagemDeErro(e);
+            throw new MensagemDeErroException(e);
         }
 
         List<PersonagemAtor> personagens = new ArrayList<>();
@@ -68,10 +68,10 @@ public class FilmeService {
         filmeRepository.save(filme);
     }
 
-    public List<Filme> consultarFilmes(String nomeFilme, String nomeDiretor, String nomePersonagem, String nomeAtor) throws MensagemDeErro {
+    public List<Filme> consultarFilmes(String nomeFilme, String nomeDiretor, String nomePersonagem, String nomeAtor) throws MensagemDeErroException {
         if (filmeRepository.count() == 0) {
             String e = "Nenhum filme cadastrado, favor cadastar filme";
-            throw new MensagemDeErro(e);
+            throw new MensagemDeErroException(e);
         }
 
         List<Filme> filmes = new ArrayList<>();
@@ -90,21 +90,21 @@ public class FilmeService {
 
             } else {
                 String e = "Ator não encontrato com os filtros nomeFilme " + nomeFilme + ", nomeDiretor " + nomeDiretor + ", nomePersonagem " + nomePersonagem + ", nomeAtor " + nomeAtor + ", favor informar outros filtros";
-                throw new MensagemDeErro(e);
+                throw new MensagemDeErroException(e);
             }
         }
         return filmes;
     }
 
-    public void removerFilme (Integer id) throws MensagemDeErro {
+    public void removerFilme (Integer id) throws MensagemDeErroException {
         if (id.equals(null)) {
             String e = "Campo obrigatório não informado. Favor informar o campo ID";
-            throw new MensagemDeErro(e);
+            throw new MensagemDeErroException(e);
         }
         Optional<Filme> filmeExistenteID = filmeRepository.findById(id);
         if (!filmeExistenteID.isPresent()) {
             String e = "Nenhum ator encontrado com o parâmetro id " + id + " favor verifique os parâmetros informados";
-            throw new MensagemDeErro(e);
+            throw new MensagemDeErroException(e);
         }
 
         Filme filmeExistente = filmeExistenteID.get();
