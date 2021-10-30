@@ -1,9 +1,11 @@
 package br.com.cwi.reset.projeto1;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class Exercicios1 {
+
+    public Exercicios1() {
+    }
 
     public Integer somarLista(List<Integer> numeros) {
         int somaLista = 0;
@@ -19,9 +21,11 @@ public class Exercicios1 {
         for (int i = 0; i < numeros.size(); i++) {
             somaLista = somaLista + numeros.get(i);
         }
-        double mediaLista = somaLista / numeros.size();
+        if (somaLista == 0) {
+            return 0.0;
+        }
 
-        return mediaLista;
+        return (double) (somaLista / (double) numeros.size());
     }
 
     public Integer obterMaiorNumero(List<Integer> numeros) {
@@ -43,18 +47,17 @@ public class Exercicios1 {
     }
 
     public List<Integer> ordenarLista(List<Integer> numeros) {
-        List<Integer> numerosOrdenados = numeros;
         int auxiliar = 0;
-        for (int i = 0; i < numerosOrdenados.size(); i++) {
-            for (int j = 0; j < numerosOrdenados.size(); j++) {
-                if (numerosOrdenados.get(i) < numerosOrdenados.get(j)) {
-                    auxiliar = numerosOrdenados.get(j);
-                    numerosOrdenados.set(j, numerosOrdenados.get(i));
-                    numerosOrdenados.set(i, auxiliar);
+        for (int i = 0; i < numeros.size(); i++) {
+            for (int j = 0; j < numeros.size(); j++) {
+                if (numeros.get(i) < numeros.get(j)) {
+                    auxiliar = numeros.get(j);
+                    numeros.set(j, numeros.get(i));
+                    numeros.set(i, auxiliar);
                 }
             }
         }
-        return numerosOrdenados;
+        return numeros;
     }
 }
 
