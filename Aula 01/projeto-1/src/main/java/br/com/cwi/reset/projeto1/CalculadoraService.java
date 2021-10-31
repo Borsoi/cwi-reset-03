@@ -4,11 +4,13 @@ import java.util.List;
 
 public class CalculadoraService {
 
+    private LeitorTeclado leitorTeclado = new LeitorTeclado();
+
     public CalculadoraService() {
     }
 
-    public double multiplicar (double numero1, double numero2) {
-        return (double) (numero1 * numero2);
+    public double multiplicar (Double numero1, Double numero2) {
+        return (Double) (numero1 * numero2);
     }
 
     public int soma (List<Integer> numeros) {
@@ -19,7 +21,10 @@ public class CalculadoraService {
         return resultado;
     }
 
-    public void divisao (double numero1, double numero2) {
+    public Double multiplicarUsandoOTeclado() {
+        Double numeroUm = leitorTeclado.lerDouble();
+        Double numeroDois = leitorTeclado.lerDouble();;
 
+        return multiplicar(numeroUm, numeroDois);
     }
 }

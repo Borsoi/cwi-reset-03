@@ -2,7 +2,6 @@ package br.com.cwi.reset.projeto1;
 
 import org.junit.Assert;
 import org.junit.Test;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -139,13 +138,12 @@ public class Exercicios1Test {
         //Arrange
         Exercicios1 calculadora = new Exercicios1();
         List<Integer> numeros = Arrays.asList();
-        Double esperado = 0.0;
 
         //Action
-        Double somaResultado = calculadora.calcularMedia(numeros);
+        Throwable exception = Assert.assertThrows(ArithmeticException.class, () -> calculadora.calcularMedia(numeros));
 
         //Assert
-        Assert.assertEquals(esperado, somaResultado);
+        Assert.assertEquals("Não é possível dividir um número zero", exception.getMessage());
     }
 
     @Test
@@ -157,6 +155,7 @@ public class Exercicios1Test {
         //Action
         String resultado = inversorDePalavras.obterPalavraInvertida("Abacate");
 
+        //Assert
         Assert.assertEquals(esperado,resultado);
     }
 
@@ -169,6 +168,7 @@ public class Exercicios1Test {
         //Action
         String resultado = inversorDePalavras.obterPalavraInvertida("Banana");
 
+        //Assert
         Assert.assertEquals(esperado,resultado);
     }
 
@@ -181,6 +181,7 @@ public class Exercicios1Test {
         //Action
         String resultado = inversorDePalavras.obterPalavraInvertida("Pessego");
 
+        //Assert
         Assert.assertEquals(esperado,resultado);
     }
 
@@ -193,8 +194,70 @@ public class Exercicios1Test {
         //Action
         String resultado = inversorDePalavras.obterPalavraInvertida("Morango");
 
+        //Assert
         Assert.assertEquals(esperado,resultado);
     }
 
+    @Test
+    public void deveOrdenarUmaListaDeNumerosInteirosPositivos() {
+        //Arrange
+        Exercicios1 ordenarLista = new Exercicios1();
+        List<Integer> numeros = Arrays.asList(8, 2, 15, 1, 9);
+        List<Integer> numerosEsperado = Arrays.asList(1, 2, 8, 9, 15);
+
+        //Action
+        List<Integer> resultado = ordenarLista.ordenarLista(numeros);
+
+        //Assert
+        Assert.assertEquals(numerosEsperado, resultado);
+    }
+
+    @Test
+    public void deveOrdenarUmaListaDeNumerosInteirosNegativos() {
+        //Arrange
+        Exercicios1 ordenarLista = new Exercicios1();
+        List<Integer> numeros = Arrays.asList(-8, -2, -15, -1, -9);
+        List<Integer> numerosEsperado = Arrays.asList(-15, -9, -8, -2, -1);
+
+        //Action
+        List<Integer> resultado = ordenarLista.ordenarLista(numeros);
+
+        //Assert
+        Assert.assertEquals(numerosEsperado, resultado);
+    }
+
+    @Test
+    public void deveOrdenarUmaListaDeNumerosZerados() {
+        //Arrange
+        Exercicios1 ordenarLista = new Exercicios1();
+        List<Integer> numeros = Arrays.asList(0, 0, 0, 0, 0);
+        List<Integer> numerosEsperado = Arrays.asList(0, 0, 0, 0, 0);
+
+        //Action
+        List<Integer> resultado = ordenarLista.ordenarLista(numeros);
+
+        //Assert
+        Assert.assertEquals(numerosEsperado, resultado);
+    }
+
+    @Test
+    public void deveOrdenarUmaListaVaziaCapturaUmaException() {
+        //Arrange
+        Exercicios1 ordenarLista = new Exercicios1();
+        List<Integer> numeros = Arrays.asList();
+
+        //Action e Assert
+        Assert.assertThrows(ArithmeticException.class, () -> ordenarLista.ordenarLista(numeros));
+    }
+
+    @Test
+    public void deveOrdenarUmaListaNull() {
+        //Arrange
+        Exercicios1 ordenarLista = new Exercicios1();
+
+        //Action e Assert
+        Assert.assertThrows(NullPointerException.class, () -> ordenarLista.ordenarLista(null));
+    }
 
 }
+

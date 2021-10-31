@@ -17,15 +17,15 @@ public class Exercicios1 {
     }
 
     public Double calcularMedia(List<Integer> numeros) {
+       if (numeros.size() == 0) {
+           throw new ArithmeticException("Não é possível dividir um número zero");
+       }
         int somaLista = 0;
         for (int i = 0; i < numeros.size(); i++) {
             somaLista = somaLista + numeros.get(i);
         }
-        if (somaLista == 0) {
-            return 0.0;
-        }
 
-        return (double) (somaLista / (double) numeros.size());
+        return somaLista / (double) numeros.size();
     }
 
     public Integer obterMaiorNumero(List<Integer> numeros) {
@@ -48,6 +48,9 @@ public class Exercicios1 {
 
     public List<Integer> ordenarLista(List<Integer> numeros) {
         int auxiliar = 0;
+        if (numeros.isEmpty()) {
+            throw new ArithmeticException();
+        }
         for (int i = 0; i < numeros.size(); i++) {
             for (int j = 0; j < numeros.size(); j++) {
                 if (numeros.get(i) < numeros.get(j)) {
